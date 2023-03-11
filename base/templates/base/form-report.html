@@ -1,0 +1,17 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/form-report.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <form id="form-report-form" method="POST">
+    {% csrf_token %}
+    <label for="start_date">Від</label>
+    <input id="start_date" name="start_date" type="date" required />
+    <label for="end_date">До</label>
+    <input id="end_date" name="end_date" type="date" required />
+    <input type="submit" value="Підтвердити" />
+  </form>
+{% endblock %}

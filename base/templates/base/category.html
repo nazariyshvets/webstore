@@ -1,0 +1,123 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/search-form.css' %}" />
+  <link rel="stylesheet" href="{% static 'base/css/category.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1 id="category-title">{{ title }}</h1>
+
+  <form id="search-form">
+    <div id="search-input-wrapper">
+      <input
+        id="search-input"
+        name="search-input"
+        placeholder="Введіть назву товару..."
+        maxlength="50"
+        value="{{ search_string }}" />
+      <button id="search" type="submit">
+        <img
+          src="{% static 'base/images/search.svg' %}"
+          alt="Search"
+          draggable="false" />
+      </button>
+    </div>
+
+    <select id="sort" name="sort">
+      <option value="cheap">Від дешевих до дорогих</option>
+      <option value="expensive">Від дорогих до дешевих</option>
+      <option value="novelty">Новинки</option>
+      <option value="rating">За рейтингом</option>
+    </select>
+
+    <select id="commodities-num-per-page" name="commodities-num-per-page">
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+
+    <input id="selected-manufacturers" name="manufacturers" type="hidden" />
+  </form>
+
+  <div id="filters">
+    <h1 id="filters-title">Фільтри</h1>
+    <form id="filter-form">
+      <div id="manufacturers">
+        {% for manufacturer_name in all_manufacturers %}
+          <input
+            class="manufacturer-input"
+            type="checkbox"
+            draggable="false"
+            value="{{ manufacturer_name }}" />
+          <label>{{ manufacturer_name }}</label><br />
+        {% endfor %}
+      </div>
+      <input id="filter" type="submit" value="Підтвердити" />
+    </form>
+  </div>
+
+  <div id="commodities">
+    {% for commodity in page_obj %}
+      <div class="commodity">
+        {% if user.is_authenticated %}
+          {% if commodity.quantity != 0 %}
+            <button class="add-to-cart" data-commodity_id="{{ commodity.id }}">
+              Додати в кошик
+            </button>
+          {% else %}
+            <p class="out-of-stock">Немає в наявності</p>
+          {% endif %}
+        {% endif %}
+
+        <img
+          class="commodity-img"
+          src="/media/{{ commodity.picture }}"
+          alt="Товар"
+          draggable="false" />
+        <a
+          class="commodity-title"
+          href="{% url 'base:commodity' title commodity.id %}"
+          >{{ commodity.title }}</a
+        >
+        <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div id="pagination">
+    {% if page_obj.has_previous %}
+      <a
+        href="?page=1&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        &laquo;
+      </a>
+      <a
+        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        {{ page_obj.previous_page_number }}
+      </a>
+    {% endif %}
+    {% if page_obj.has_other_pages %}
+      <span id="current-page">{{ page_obj.number }}</span>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <a
+        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        {{ page_obj.next_page_number }}
+      </a>
+      <a
+        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        &raquo;
+      </a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const sort = "{{ sort }}";
+    const commoditiesNumPerPage = "{{ commodities_num_per_page }}";
+    const selectedManufacturers = "{{ selected_manufacturers_string }}";
+  </script>
+  <script src="{% static 'base/js/category.js' %}"></script>
+{% endblock %}

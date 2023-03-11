@@ -1,0 +1,117 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/search-form.css' %}" />
+  <link rel="stylesheet" href="{% static 'base/css/index.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div id="catalogue">
+    <a id="catalogue-link" href="{% url 'base:catalogue' %}">Каталог</a>
+    <ul id="catalogue-links">
+      {% for category in categories %}
+        <li>
+          <a href="{% url 'base:category' category.title %}"
+            >{{ category.title }}</a
+          >
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <form id="search-form">
+    <div id="search-input-wrapper">
+      <input
+        id="search-input"
+        name="search-input"
+        placeholder="Введіть назву товару..."
+        maxlength="50"
+        value="{{ search_string }}" />
+      <button id="search" type="submit">
+        <img
+          src="{% static 'base/images/search.svg' %}"
+          alt="Search"
+          draggable="false" />
+      </button>
+    </div>
+
+    <select id="sort" name="sort" onchange="this.form.submit()">
+      <option value="cheap">Від дешевих до дорогих</option>
+      <option value="expensive">Від дорогих до дешевих</option>
+      <option value="novelty">Новинки</option>
+      <option value="rating">За рейтингом</option>
+    </select>
+
+    <select
+      id="commodities-num-per-page"
+      name="commodities-num-per-page"
+      onchange="this.form.submit()">
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </form>
+
+  <div id="commodities">
+    {% for commodity in page_obj %}
+      <div class="commodity">
+        {% if user.is_authenticated %}
+          {% if commodity.quantity != 0 %}
+            <button class="add-to-cart" data-commodity_id="{{ commodity.id }}">
+              Додати в кошик
+            </button>
+          {% else %}
+            <p class="out-of-stock">Немає в наявності</p>
+          {% endif %}
+        {% endif %}
+        
+        <img
+          class="commodity-img"
+          src="/media/{{ commodity.picture }}"
+          alt="default"
+          draggable="false" />
+        <a
+          class="commodity-title"
+          href="{% url 'base:commodity' commodity.category.title commodity.id %}"
+          >{{ commodity.title }}</a
+        >
+        <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div id="pagination">
+    {% if page_obj.has_previous %}
+      <a
+        href="?page=1&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        &laquo;
+      </a>
+      <a
+        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        {{ page_obj.previous_page_number }}
+      </a>
+    {% endif %}
+    {% if page_obj.has_other_pages %}
+      <span id="current-page">{{ page_obj.number }}</span>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <a
+        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        {{ page_obj.next_page_number }}
+      </a>
+      <a
+        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        &raquo;
+      </a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const sort = "{{ sort }}";
+    const commoditiesNumPerPage = "{{ commodities_num_per_page }}";
+  </script>
+  <script src="{% static 'base/js/index.js' %}"></script>
+{% endblock %}

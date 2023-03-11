@@ -1,0 +1,110 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/commodity.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div id="catalogue">
+    <a id="catalogue-link" href="{% url 'base:catalogue' %}">Каталог</a>
+    <ul id="catalogue-links">
+      {% for category in categories %}
+        <li>
+          <a href="{% url 'base:category' category.title %}"
+            >{{ category.title }}</a
+          >
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div id="commodity-img-info-wrapper">
+    <img
+      id="commodity-img"
+      src="/media/{{ commodity.picture }}"
+      alt="Character"
+      draggable="false" />
+    <div id="commodity-info">
+      <h1 id="commodity-title">{{ commodity.title }}</h1>
+      <p id="commodity-price">Ціна: {{ commodity.price }}₴</p>
+      <p id="commodity-desc">{{ commodity.description }}</p>
+    </div>
+  </div>
+
+  <div id="comments">
+    <h1 id="comments-title">Коментарі</h1>
+
+    {% if request.user.is_authenticated %}
+      <button id="leave-comment">Залишити коментар</button>
+    {% endif %}
+
+    <div id="comment-form-wrapper">
+      <div id="another-comment-form-wrapper">
+        <form
+          id="comment-form"
+          action="{% url 'base:comment' category_pk commodity.id %}"
+          method="POST">
+          {% csrf_token %}
+          <div id="evaluation-wrapper">
+            <label for="evaluation">Оцінка товару:</label>
+            <input
+              id="evaluation"
+              name="evaluation"
+              type="range"
+              min="1"
+              max="5"
+              value="3"
+              step="1"
+              list="tickmarks" />
+            <datalist id="tickmarks">
+              <option value="1" label="1"></option>
+              <option value="2" label="2"></option>
+              <option value="3" label="3"></option>
+              <option value="4" label="4"></option>
+              <option value="5" label="5"></option>
+            </datalist>
+          </div>
+          <textarea
+            id="comment-textarea"
+            name="comment-textarea"
+            maxlength="1000"
+            placeholder="Напишіть відгук про товар..."
+            required></textarea>
+          <button id="send-comment" type="submit">Надіслати</button>
+        </form>
+        <button id="comment-form-exit">x</button>
+      </div>
+    </div>
+
+    {% for comment in comments %}
+      <div class="comment">
+        <img
+          class="author-img"
+          src="{% static 'base/images/default-user.png' %}"
+          alt="Користувач"
+          draggable="false" />
+        <div class="comment-info">
+          <div class="author-name-pub-date-wrapper">
+            <p class="author-name">
+              {% if comment.author.username == user.username %}
+                Ви
+              {% else %} 
+                {{comment.author.first_name }} {{ comment.author.last_name }}
+              {% endif %}
+            </p>
+            <p class="pub-date">{{ comment.sending_datetime }}</p>
+          </div>
+
+          <p class="comment-text">{{ comment.text }}</p>
+        </div>
+      </div>
+      {% empty %}
+        <p id="no-comments">Будьте першим, хто залишитись коментар</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'base/js/commodity.js' %}"></script>
+{% endblock %}

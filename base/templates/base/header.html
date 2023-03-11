@@ -1,0 +1,22 @@
+<header>
+  <a id="brand" href="{% url 'base:index' %}">InterTech</a>
+
+  <nav id="header-nav">
+    <ul id="nav-links">
+      <li><a href="{% url 'base:catalogue' %}">Каталог</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'base:cart' %}">Кошик</a></li>
+        <li><a href="{% url 'accounts:profile' %}">Профіль</a></li>
+      {% else %}
+        <li><a href="{% url 'accounts:login' %}">Вхід</a></li>
+        <li><a href="{% url 'accounts:sign-up' %}">Реєстрація</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <div id="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>

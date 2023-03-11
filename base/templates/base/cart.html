@@ -1,0 +1,48 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/cart.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1 id="cart-title">Кошик</h1>
+
+  <div id="commodities">
+    {% for commodity in commodities %}
+      <div class="commodity">
+        <div class="delete-from-cart" data-commodity_id="{{ commodity.id }}">x</div>
+        <img
+          class="commodity-img"
+          src="/media/{{ commodity.picture }}"
+          alt="default"
+          draggable="false" />
+        <a
+          class="commodity-title"
+          href="{% url 'base:commodity' commodity.category.title commodity.id %}"
+          >{{ commodity.title }}</a
+        >
+        <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if commodities %}
+    <a id="buy" href="{% url 'base:buy' %}">Купити</a>
+  {% endif %}
+  
+  {% comment %}
+    If there are NO commodities img and h2 are displayed.
+    If there ARE commodities img and h2 have "display: none" property.
+    This is done to display img and h2 dynamically when a user deletes the last item in the cart.
+  {% endcomment %}
+  <img
+    id="empty-cart-img"
+    src="{% static 'base/images/empty_cart.png' %}"
+    draggable="false" />
+  <h2 id="empty-cart">Кошик порожній</h2>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'base/js/delete-from-cart.js' %}"></script>
+{% endblock %}
