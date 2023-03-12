@@ -19,4 +19,5 @@ To install the project follow these commands:
    - `py -m venv name`, replace 'name' with a name you like
    - `name\Scripts\activate.bat`
 2. Clone the project by using `git clone url`, replace 'url' with the URL of this repository
-3. Install dependencies by running `pip install -r requirements.txt`
+3. Install the dependencies by running `pip install -r requirements.txt`
+4. Use `py manage.py runserver` to start the server
