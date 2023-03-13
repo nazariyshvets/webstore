@@ -1,0 +1,101 @@
+body {
+  background-color: var(--lightblue);
+}
+
+main {
+  flex-direction: column;
+  width: 60%;
+  min-height: calc(100vh - 70px);
+  background-color: var(--white);
+  padding: 20px 40px;
+  left: 20%;
+}
+
+#logout {
+  font-size: 20px;
+  color: var(--blue);
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+#logout:hover {
+  text-decoration: underline;
+}
+
+#user-img {
+  height: 120px;
+  object-fit: cover;
+  align-self: center;
+}
+
+#username {
+  font-size: 24px;
+  color: var(--blue);
+  text-align: center;
+  padding: 10px 0;
+}
+
+#user-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  border-top: 2px solid var(--grey);
+  border-bottom: 2px solid var(--grey);
+  padding: 10px 0;
+  list-style-type: none;
+}
+
+#user-info li {
+  font-size: 20px;
+  color: var(--blue);
+}
+
+#change-profile, #change-password, #form-report {
+  font-size: 20px;
+  width: 200px;
+  background-color: var(--blue);
+  padding: 6px 20px;
+  margin-top: 20px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+
+#change-profile:hover, #change-password:hover, #form-report:hover {
+  box-shadow: 4px 4px 5px var(--grey);
+}
+
+@media screen and (max-width: 950px) {
+  main {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  main {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    width: 94%;
+    padding: 10px 10px;
+    left: 3%;
+  }
+
+  #logout {
+    top: 10px;
+    right: 20px;
+  }
+
+  #username {
+    font-size: 20px;
+  }
+
+  #user-info li, #change-profile, #change-password, #form-report {
+    font-size: 16px;
+  }
+}

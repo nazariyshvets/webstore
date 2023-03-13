@@ -1,0 +1,52 @@
+body {
+  background-color: var(--lightblue);
+}
+
+main {
+  flex-direction: column;
+  row-gap: 4px;
+  width: 60%;
+  min-height: calc(100vh - 70px);
+  background-color: var(--white);
+  padding: 20px 40px;
+  left: 20%;
+}
+
+p, caption, th, td  {
+  color: var(--blue);
+}
+
+i {
+  color: var(--lightblue);
+}
+
+table {
+  background-color: var(--lightblue);
+  margin-top: 20px;
+}
+
+th, td {
+  background-color: var(--white);
+}
+
+@media screen and (max-width: 950px) {
+  main {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  main {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    width: 94%;
+    padding: 10px 10px;
+    left: 3%;
+  }
+}

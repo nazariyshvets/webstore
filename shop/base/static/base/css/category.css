@@ -1,0 +1,260 @@
+main {
+  flex-direction: column;
+}
+
+/*----- FILTERS STYLING -----*/
+#filters {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  width: 250px;
+  height: calc(100vh - 70px);
+  background-color: var(--lightblue);
+  padding: 30px 20px;
+  position: fixed;
+  z-index: 20;
+  overflow: hidden;
+}
+
+#filters-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#filter-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#manufacturers label {
+  font-size: 20px;
+}
+
+#filter {
+  font-size: 20px;
+  color: var(--blue);
+  background-color: var(--white);
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#filter:hover {
+  color: var(--lightblue);
+}
+
+@media screen and (max-width: 950px) {
+  #filters {
+    width: 200px;
+    padding: 30px 10px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #filters {
+    width: auto;
+    height: auto;
+    padding: 20px 10px;
+    position: static;
+  }
+
+  #filters-title {
+    font-size: 30px;
+  }
+
+  #manufacturers label, #filter {
+    font-size: 16px;
+  }
+}
+
+/*----- COMMODITIES STYLING -----*/
+#category-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--blue);
+  padding: 20px;
+  margin-left: 250px;
+  text-align: center;
+}
+
+#search-form {
+  padding-left: 250px;
+  margin-bottom: 20px;
+}
+
+#commodities {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 20px;
+  margin-left: 250px;
+}
+
+.commodity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  overflow: hidden;
+  box-shadow: 0px 0px 8px black;
+  position: relative;
+}
+
+.commodity:hover .add-to-cart {
+  display: inline-block;
+}
+
+.add-to-cart {
+  display: none;
+  font-size: 20px;
+  color: var(--blue);
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.add-to-cart:hover {
+  box-shadow: 2px 2px 4px var(--grey);
+}
+
+.out-of-stock {
+  font-size: 20px;
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.commodity-img {
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.commodity-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--blue);
+  padding: 0 10px;
+  text-align: center;
+}
+
+.commodity-title:hover {
+  text-decoration: underline;
+}
+
+.commodity-price {
+  font-size: 16px;
+  color: var(--blue);
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  #commodities {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  #commodities, #category-title {
+    margin-left: 200px;
+  }
+
+  #search-form {
+    padding-left: 200px;
+  }
+
+  .commodity-title {
+    font-size: 18px;
+  }
+
+  .add-to-cart {
+    font-size: 16px;
+    display: block;
+  }
+
+  .out-of-stock {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #commodities, #category-title {
+    margin-left: 0;
+  }
+
+  #search-form {
+    padding-left: 0;
+  }
+
+  #commodities {
+    padding: 15px;
+    padding-top: 20px;
+  }
+
+  .add-to-cart {
+    font-size: 14px;
+    padding: 4px 4px;
+    right: 6px;
+  }
+
+  .out-of-stock {
+    font-size: 14px;
+    right: 6px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #commodities {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*----- PAGINATION STYLING -----*/
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  margin-left: 250px;
+  margin-bottom: 20px;
+}
+
+#pagination a {
+  font-size: 20px;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+#current-page {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--lightblue);
+}
+
+@media screen and (max-width: 950px) {
+  #pagination {
+    margin-left: 200px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #pagination {
+    margin-left: 0;
+  }
+}
