@@ -15,13 +15,15 @@
         <img
           class="commodity-img"
           src="/media/{{ commodity.picture }}"
-          alt="default"
-          draggable="false" />
+          alt="{{ commodity.title }}"
+          draggable="false"
+        />
         <a
           class="commodity-title"
           href="{% url 'base:commodity' commodity.category.title commodity.id %}"
-          >{{ commodity.title }}</a
         >
+          {{ commodity.title }}
+        </a>
         <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
       </div>
     {% endfor %}
@@ -30,17 +32,8 @@
   {% if commodities %}
     <a id="buy" href="{% url 'base:buy' %}">Купити</a>
   {% endif %}
-  
-  {% comment %}
-    If there are NO commodities img and h2 are displayed.
-    If there ARE commodities img and h2 have "display: none" property.
-    This is done to display img and h2 dynamically when a user deletes the last item in the cart.
-  {% endcomment %}
-  <img
-    id="empty-cart-img"
-    src="{% static 'base/images/empty_cart.png' %}"
-    draggable="false" />
-  <h2 id="empty-cart">Кошик порожній</h2>
+
+  <div id="empty-cart"></div>
 {% endblock %}
 
 {% block scripts %}

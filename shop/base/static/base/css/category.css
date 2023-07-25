@@ -4,20 +4,20 @@ main {
 
 /*----- FILTERS STYLING -----*/
 #filters {
+  position: fixed;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
   width: 250px;
   height: calc(100vh - 70px);
-  background-color: var(--lightblue);
   padding: 30px 20px;
-  position: fixed;
-  z-index: 20;
+  background-color: var(--lightblue);
   overflow: hidden;
 }
 
 #filters-title {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 36px;
   font-weight: 700;
   text-align: center;
@@ -34,16 +34,18 @@ main {
 }
 
 #filter {
-  font-size: 20px;
-  color: var(--blue);
-  background-color: var(--white);
-  border: none;
   padding: 4px 0;
-  cursor: pointer;
+  border: none;
+  background-color: var(--white);
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 #filter:hover {
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
 }
 
@@ -56,53 +58,56 @@ main {
 
 @media screen and (max-width: 750px) {
   #filters {
+    position: static;
     width: auto;
     height: auto;
     padding: 20px 10px;
-    position: static;
   }
 
   #filters-title {
     font-size: 30px;
   }
 
-  #manufacturers label, #filter {
+  #manufacturers label,
+  #filter {
     font-size: 16px;
   }
 }
 
 /*----- COMMODITIES STYLING -----*/
 #category-title {
-  font-family: 'Nunito', sans-serif;
+  margin-left: 250px;
+  padding: 20px;
+  font-family: "Nunito", sans-serif;
   font-size: 40px;
   font-weight: 800;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 20px;
-  margin-left: 250px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 #search-form {
-  padding-left: 250px;
   margin-bottom: 20px;
+  padding-left: 250px;
 }
 
 #commodities {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 15px;
-  padding: 20px;
   margin-left: 250px;
+  padding: 20px;
 }
 
 .commodity {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
-  overflow: hidden;
   box-shadow: 0px 0px 8px black;
-  position: relative;
+  overflow: hidden;
 }
 
 .commodity:hover .add-to-cart {
@@ -110,17 +115,18 @@ main {
 }
 
 .add-to-cart {
-  display: none;
-  font-size: 20px;
-  color: var(--blue);
-  border: none;
-  border-radius: 5px;
-  padding: 4px 10px;
   position: absolute;
   right: 10px;
   top: 10px;
-  cursor: pointer;
+  display: none;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .add-to-cart:hover {
@@ -128,11 +134,12 @@ main {
 }
 
 .out-of-stock {
-  font-size: 20px;
-  color: red;
   position: absolute;
   right: 10px;
   top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: red;
+  color: red;
 }
 
 .commodity-img {
@@ -142,15 +149,16 @@ main {
 }
 
 .commodity-title {
-  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  padding: 0 10px;
   font-size: 20px;
   font-weight: 600;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 0 10px;
   text-align: center;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .commodity-title:hover {
@@ -158,10 +166,20 @@ main {
 }
 
 .commodity-price {
-  font-size: 16px;
-  color: var(--blue);
-  padding: 0 10px;
   margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  font-size: 20px;
+  font-style: italic;
+  -webkit-text-fill-color: var(--grey);
+  color: var(--grey);
+  text-align: center;
 }
 
 @media screen and (max-width: 1200px) {
@@ -171,7 +189,8 @@ main {
 }
 
 @media screen and (max-width: 950px) {
-  #commodities, #category-title {
+  #commodities,
+  #category-title {
     margin-left: 200px;
   }
 
@@ -184,8 +203,8 @@ main {
   }
 
   .add-to-cart {
-    font-size: 16px;
     display: block;
+    font-size: 16px;
   }
 
   .out-of-stock {
@@ -194,7 +213,8 @@ main {
 }
 
 @media screen and (max-width: 750px) {
-  #commodities, #category-title {
+  #commodities,
+  #category-title {
     margin-left: 0;
   }
 
@@ -208,14 +228,14 @@ main {
   }
 
   .add-to-cart {
-    font-size: 14px;
-    padding: 4px 4px;
     right: 6px;
+    padding: 4px 4px;
+    font-size: 14px;
   }
 
   .out-of-stock {
-    font-size: 14px;
     right: 6px;
+    font-size: 14px;
   }
 }
 
@@ -237,6 +257,7 @@ main {
 
 #pagination a {
   font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-decoration: underline;
 }
@@ -244,6 +265,7 @@ main {
 #current-page {
   font-size: 24px;
   font-weight: 600;
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
 }
 

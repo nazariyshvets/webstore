@@ -3,11 +3,12 @@ main {
 }
 
 #cart-title {
-  font-family: 'Nunito', sans-serif;
+  padding: 20px 0;
+  font-family: "Nunito", sans-serif;
   font-size: 50px;
   font-weight: 800;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 20px 0;
   text-align: center;
 }
 
@@ -23,25 +24,26 @@ main {
 }
 
 .commodity {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
-  overflow: hidden;
   box-shadow: 0px 0px 8px black;
-  position: relative;
+  overflow: hidden;
 }
 
 .delete-from-cart {
-  font-size: 30px;
-  font-weight: 700;
-  display: none;
-  color: var(--blue);
   position: absolute;
   right: 15px;
   top: 10px;
-  cursor: pointer;
+  display: none;
+  font-size: 30px;
+  font-weight: 700;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 .delete-from-cart:hover {
@@ -55,15 +57,16 @@ main {
 }
 
 .commodity-title {
-  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  padding: 0 10px;
   font-size: 20px;
   font-weight: 600;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 0 10px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   text-align: center;
+  overflow: hidden;
 }
 
 .commodity-title:hover {
@@ -71,38 +74,41 @@ main {
 }
 
 .commodity-price {
-  font-size: 16px;
-  color: var(--blue);
-  padding: 0 10px;
   margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 #buy {
-  font-size: 30px;
-  width: 400px;
-  background-color: var(--blue);
-  border: none;
-  padding: 6px 0;
-  margin-bottom: 20px;
-  text-align: center;
   align-self: center;
-  cursor: pointer;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 6px 0;
+  border: none;
+  background-color: var(--blue);
+  font-size: 30px;
+  text-align: center;
   transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
 #buy:hover {
   box-shadow: 4px 4px 5px var(--grey);
 }
 
-#empty-cart-img {
-  display: none;
-  height: 200px;
+#empty-cart {
   align-self: center;
+}
+
+#empty-cart-img {
+  height: 200px;
   margin-bottom: 20px;
 }
 
-#empty-cart {
-  display: none;
+#empty-cart-text {
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
 }
@@ -119,8 +125,8 @@ main {
   }
 
   .delete-from-cart {
-    font-size: 24px;
     display: inline-block;
+    font-size: 24px;
   }
 
   .commodity-title {
@@ -139,9 +145,9 @@ main {
   }
 
   #buy {
-    font-size: 24px;
     width: 240px;
     padding: 4px 0;
+    font-size: 24px;
   }
 }
 

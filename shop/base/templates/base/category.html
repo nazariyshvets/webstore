@@ -16,20 +16,22 @@
         name="search-input"
         placeholder="Введіть назву товару..."
         maxlength="50"
-        value="{{ search_string }}" />
+        value="{{ search_string }}"
+      />
       <button id="search" type="submit">
         <img
           src="{% static 'base/images/search.svg' %}"
           alt="Search"
-          draggable="false" />
+          draggable="false"
+        />
       </button>
     </div>
 
     <select id="sort" name="sort">
+      <option value="rating">За рейтингом</option>
       <option value="cheap">Від дешевих до дорогих</option>
       <option value="expensive">Від дорогих до дешевих</option>
       <option value="novelty">Новинки</option>
-      <option value="rating">За рейтингом</option>
     </select>
 
     <select id="commodities-num-per-page" name="commodities-num-per-page">
@@ -37,8 +39,6 @@
       <option value="15">15</option>
       <option value="20">20</option>
     </select>
-
-    <input id="selected-manufacturers" name="manufacturers" type="hidden" />
   </form>
 
   <div id="filters">
@@ -50,7 +50,8 @@
             class="manufacturer-input"
             type="checkbox"
             draggable="false"
-            value="{{ manufacturer_name }}" />
+            value="{{ manufacturer_name }}"
+          />
           <label>{{ manufacturer_name }}</label><br />
         {% endfor %}
       </div>
@@ -74,39 +75,49 @@
         <img
           class="commodity-img"
           src="/media/{{ commodity.picture }}"
-          alt="Товар"
-          draggable="false" />
+          alt="{{ commodity.title }}"
+          draggable="false"
+        />
         <a
           class="commodity-title"
           href="{% url 'base:commodity' title commodity.id %}"
-          >{{ commodity.title }}</a
         >
+          {{ commodity.title }}
+        </a>
         <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
       </div>
+    {% empty %}
+      <p class="empty">Товарів не знайдено</p>
     {% endfor %}
   </div>
 
   <div id="pagination">
     {% if page_obj.has_previous %}
       <a
-        href="?page=1&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        href="?page=1&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}"
+      >
         &laquo;
       </a>
       <a
-        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}"
+      >
         {{ page_obj.previous_page_number }}
       </a>
     {% endif %}
+    
     {% if page_obj.has_other_pages %}
       <span id="current-page">{{ page_obj.number }}</span>
     {% endif %}
+    
     {% if page_obj.has_next %}
       <a
-        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}"
+      >
         {{ page_obj.next_page_number }}
       </a>
       <a
-        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}">
+        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}&manufacturers={{selected_manufacturers_string}}"
+      >
         &raquo;
       </a>
     {% endif %}
@@ -117,7 +128,8 @@
   <script>
     const sort = "{{ sort }}";
     const commoditiesNumPerPage = "{{ commodities_num_per_page }}";
-    const selectedManufacturers = "{{ selected_manufacturers_string }}";
+    const selectedManufacturersStr = "{{ selected_manufacturers_string }}";
   </script>
   <script src="{% static 'base/js/category.js' %}"></script>
+  <script src="{% static 'base/js/add-to-cart.js' %}"></script>
 {% endblock %}

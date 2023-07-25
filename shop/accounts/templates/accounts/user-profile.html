@@ -1,29 +1,24 @@
-{% extends "base/main.html" %}
-{% load static %}
-
-{% block styles %}
-  <link rel="stylesheet" href="{% static 'accounts/css/user-profile.css' %}" />
-{% endblock %}
-
-{% block content %}
-  <a id="logout" href="{% url 'accounts:logout' %}">Вийти</a>
-  <img
-    id="user-img"
-    src="{% static 'base/images/default-user.png' %}"
-    alt="Користувач" />
-  <p id="username">@{{ profile.user.username }}</p>
-  <ul id="user-info">
-    <li>Ім'я: {{ profile.user.first_name }}</li>
-    <li>Прізвище: {{ profile.user.last_name }}</li>
-    <li>Електронна пошта: {{ profile.user.email }}</li>
-    <li>Баланс: {{ profile.balance }}₴</li>
-    <li>Бонусний баланс: {{ profile.bonuses }}₴</li>
-  </ul>
-  <a id="change-profile" href="{% url 'accounts:change-profile' %}">Змінити</a>
-  <a id="change-password" href="{% url 'accounts:password-change' %}">
-    Змінити пароль
-  </a>
-  {% if perms.base.can_form_report %}
-    <a id="form-report" href="{% url 'base:form-report' %}">Сформувати звіт</a>
-  {% endif %}
-{% endblock %}
+{% extends "base/main.html" %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static 'accounts/css/user-profile.css' %}" />
+{% endblock %} {% block content %}
+<a id="logout" href="{% url 'accounts:logout' %}">Вийти</a>
+<img
+  id="user-img"
+  src="{% static 'base/images/default-user.png' %}"
+  alt="Користувач"
+/>
+<p id="username">@{{ profile.user.username }}</p>
+<ul id="user-info">
+  <li>Ім'я: {{ profile.user.first_name }}</li>
+  <li>Прізвище: {{ profile.user.last_name }}</li>
+  <li>Електронна пошта: {{ profile.user.email }}</li>
+  <li>Баланс: {{ profile.balance }}₴</li>
+  <li>Бонусний баланс: {{ profile.bonuses }}₴</li>
+</ul>
+<a id="change-profile" href="{% url 'accounts:change-profile' %}">Змінити</a>
+<a id="change-password" href="{% url 'accounts:password-change' %}">
+  Змінити пароль
+</a>
+{% if perms.base.can_form_report %}
+<a id="form-report" href="{% url 'base:form-report' %}">Сформувати звіт</a>
+{% endif %} {% endblock %}

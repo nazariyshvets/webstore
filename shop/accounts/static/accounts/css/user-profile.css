@@ -3,20 +3,21 @@ body {
 }
 
 main {
+  left: 20%;
   flex-direction: column;
   width: 60%;
   min-height: calc(100vh - 70px);
   background-color: var(--white);
   padding: 20px 40px;
-  left: 20%;
 }
 
 #logout {
-  font-size: 20px;
-  color: var(--blue);
   position: absolute;
   top: 20px;
   right: 40px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 #logout:hover {
@@ -30,60 +31,66 @@ main {
 }
 
 #username {
+  padding: 10px 0;
   font-size: 24px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
-  padding: 10px 0;
 }
 
 #user-info {
   display: flex;
   flex-direction: column;
   row-gap: 4px;
+  padding: 10px 0;
   border-top: 2px solid var(--grey);
   border-bottom: 2px solid var(--grey);
-  padding: 10px 0;
   list-style-type: none;
 }
 
 #user-info li {
   font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
 }
 
-#change-profile, #change-password, #form-report {
-  font-size: 20px;
+#change-profile,
+#change-password,
+#form-report {
   width: 200px;
-  background-color: var(--blue);
-  padding: 6px 20px;
   margin-top: 20px;
+  padding: 6px 20px;
+  background-color: var(--blue);
+  font-size: 20px;
   text-align: center;
   transition: box-shadow 0.2s;
 }
 
-#change-profile:hover, #change-password:hover, #form-report:hover {
+#change-profile:hover,
+#change-password:hover,
+#form-report:hover {
   box-shadow: 4px 4px 5px var(--grey);
 }
 
 @media screen and (max-width: 950px) {
   main {
-    width: 80%;
     left: 10%;
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 750px) {
   main {
-    width: 90%;
     left: 5%;
+    width: 90%;
   }
 }
 
 @media screen and (max-width: 500px) {
   main {
+    left: 3%;
     width: 94%;
     padding: 10px 10px;
-    left: 3%;
   }
 
   #logout {
@@ -95,7 +102,10 @@ main {
     font-size: 20px;
   }
 
-  #user-info li, #change-profile, #change-password, #form-report {
+  #user-info li,
+  #change-profile,
+  #change-password,
+  #form-report {
     font-size: 16px;
   }
 }

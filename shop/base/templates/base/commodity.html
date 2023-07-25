@@ -11,9 +11,7 @@
     <ul id="catalogue-links">
       {% for category in categories %}
         <li>
-          <a href="{% url 'base:category' category.title %}"
-            >{{ category.title }}</a
-          >
+          <a href="{% url 'base:category' category.title %}" class="category">{{ category.title }}</a>
         </li>
       {% endfor %}
     </ul>
@@ -23,8 +21,9 @@
     <img
       id="commodity-img"
       src="/media/{{ commodity.picture }}"
-      alt="Character"
-      draggable="false" />
+      alt="{{ commodity.title }}"
+      draggable="false"
+    />
     <div id="commodity-info">
       <h1 id="commodity-title">{{ commodity.title }}</h1>
       <p id="commodity-price">Ціна: {{ commodity.price }}₴</p>
@@ -35,7 +34,7 @@
   <div id="comments">
     <h1 id="comments-title">Коментарі</h1>
 
-    {% if request.user.is_authenticated %}
+    {% if user.is_authenticated %}
       <button id="leave-comment">Залишити коментар</button>
     {% endif %}
 
@@ -44,7 +43,8 @@
         <form
           id="comment-form"
           action="{% url 'base:comment' category_pk commodity.id %}"
-          method="POST">
+          method="POST"
+        >
           {% csrf_token %}
           <div id="evaluation-wrapper">
             <label for="evaluation">Оцінка товару:</label>
@@ -67,7 +67,7 @@
           </div>
           <textarea
             id="comment-textarea"
-            name="comment-textarea"
+            name="comment_text"
             maxlength="1000"
             placeholder="Напишіть відгук про товар..."
             required></textarea>
@@ -99,8 +99,8 @@
           <p class="comment-text">{{ comment.text }}</p>
         </div>
       </div>
-      {% empty %}
-        <p id="no-comments">Будьте першим, хто залишитись коментар</p>
+    {% empty %}
+      <p id="no-comments">Коментарів немає</p>
     {% endfor %}
   </div>
 {% endblock %}

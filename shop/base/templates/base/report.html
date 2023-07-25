@@ -1,5 +1,6 @@
 {% extends "base/main.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/report.css' %}" />
@@ -7,28 +8,28 @@
 
 {% block content %}
   <p><i>Кількість продаж</i>: {{ sales_quantity }}</p>
-  <p><i>Сума</i>: {{ sales_sum }}₴</p>
+  <p><i>Сума</i>: {{ sales_sum|intcomma }}₴</p>
   <p>
-    <i>Найпопулярніший товар</i>: {{ most_popular_commodity.0.0 }} 
-    ({{ most_popular_commodity.1 }}, {{ most_popular_commodity.0.1 }},
-    {{ most_popular_commodity.0.2 }})
+    <i>Найпопулярніший товар</i>: {{ most_popular_commodity.title }} 
+    ({{ most_popular_commodity.category }}, {{ most_popular_commodity.manufacturer }},
+    {{ most_popular_commodity.count }})
   </p>
   <p>
-    <i>Найпопулярніша категорія</i>: {{ most_popular_category.0.0 }}
-    ({{ most_popular_category.1 }})
+    <i>Найпопулярніша категорія</i>: {{ most_popular_category.category }}
+    ({{ most_popular_category.count }})
   </p>
   <p>
-    <i>Найпопулярніший виробник</i>: {{ most_popular_manufacturer.0.0 }}
-    ({{most_popular_manufacturer.1 }})
+    <i>Найпопулярніший виробник</i>: {{ most_popular_manufacturer.manufacturer }}
+    ({{most_popular_manufacturer.count }})
   </p>
   <p>
     <i>Найдорожчий проданий товар</i>: {{ most_expensive_commodity.title }}
-    ({{most_expensive_commodity.price }}₴, {{ most_expensive_commodity.category }},
+    ({{most_expensive_commodity.price|intcomma }}₴, {{ most_expensive_commodity.category }},
     {{ most_expensive_commodity.manufacturer }})
   </p>
   <p>
     <i>Найдешевший проданий товар</i>: {{ cheapest_commodity.title }}
-    ({{cheapest_commodity.price }}₴, {{ cheapest_commodity.category }},
+    ({{cheapest_commodity.price|intcomma }}₴, {{ cheapest_commodity.category }},
     {{ cheapest_commodity.manufacturer }})
   </p>
   <table>
@@ -42,9 +43,9 @@
     </tr>
     {% for category in categories %}
       <tr>
-        <td>{{ category.name }}</td>
+        <td>{{ category.category }}</td>
         <td>{{ category.sales_quantity }}</td>
-        <td>{{ category.sales_sum }}</td>
+        <td>{{ category.sales_sum|intcomma }}</td>
       </tr>
     {% endfor %}
   </table>

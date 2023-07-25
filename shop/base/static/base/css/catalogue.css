@@ -3,11 +3,12 @@ main {
 }
 
 #catalogue-title {
-  font-family: 'Nunito', sans-serif;
+  padding: 20px 0;
+  font-family: "Nunito", sans-serif;
   font-size: 50px;
   font-weight: 800;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 20px 0;
   text-align: center;
 }
 
@@ -19,13 +20,14 @@ main {
 }
 
 .category {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 300px;
-  overflow: hidden;
   box-shadow: 0px 0px 8px black;
-  position: relative;
+  text-transform: capitalize;
+  overflow: hidden;
 }
 
 .category:hover .category-title-underline {
@@ -33,20 +35,19 @@ main {
 }
 
 .category-title-wrapper {
-  padding: 0 10px;
   position: absolute;
+  padding: 0 10px;
 }
 
 .category-title {
-  overflow: hidden;
-  word-break: break-all;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   font-size: 30px;
-  color: var(--white);
   text-align: center;
   text-shadow: 0 0 5px var(--blue);
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .category-title-underline {

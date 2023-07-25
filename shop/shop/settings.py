@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l#v4(r=d8r=m3a@umcbacacf22)gk+ffg6wn_&t&+ko=gtih-y'
+SECRET_KEY = 'YOUR-SECRET-KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'base',
     'accounts'
 ]
@@ -72,21 +73,14 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'internetshop',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'USER': 'USER', Change USER to your one
-#         'PASSWORD': 'PASSWORD', Change PASSWORD to your one
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'NAME',
+        'HOST': 'HOST',
+        'PORT': 'PORT',
+        'USER': 'USER',
+        'PASSWORD': 'PASSWORD',
     }
 }
 
@@ -117,8 +111,8 @@ TIME_ZONE = 'Europe/Kiev'
 LANGUAGE_CODE = 'uk'
 
 LANGUAGES = (
-	('en', 'English'),
-	('uk', 'Ukrainian'),
+    ('en', 'English'),
+    ('uk', 'Ukrainian'),
 )
 
 USE_I18N = True

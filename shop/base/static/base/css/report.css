@@ -3,50 +3,56 @@ body {
 }
 
 main {
+  left: 20%;
   flex-direction: column;
   row-gap: 4px;
   width: 60%;
   min-height: calc(100vh - 70px);
-  background-color: var(--white);
   padding: 20px 40px;
-  left: 20%;
+  background-color: var(--white);
 }
 
-p, caption, th, td  {
+p,
+caption,
+th,
+td {
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
 }
 
 i {
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
 }
 
 table {
-  background-color: var(--lightblue);
   margin-top: 20px;
+  background-color: var(--lightblue);
 }
 
-th, td {
+th,
+td {
   background-color: var(--white);
 }
 
 @media screen and (max-width: 950px) {
   main {
-    width: 80%;
     left: 10%;
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 750px) {
   main {
-    width: 90%;
     left: 5%;
+    width: 90%;
   }
 }
 
 @media screen and (max-width: 500px) {
   main {
+    left: 3%;
     width: 94%;
     padding: 10px 10px;
-    left: 3%;
   }
 }

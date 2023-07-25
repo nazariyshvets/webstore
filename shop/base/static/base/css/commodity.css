@@ -4,15 +4,15 @@ main {
 
 /*----- CATALOGUE STYLING -----*/
 #catalogue {
+  position: fixed;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
   width: 250px;
   height: calc(100vh - 70px);
-  background-color: var(--lightblue);
   padding: 30px 20px;
-  position: fixed;
-  z-index: 20;
+  background-color: var(--lightblue);
   overflow: hidden;
 }
 
@@ -31,16 +31,17 @@ main {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  list-style-type: none;
-  overflow: hidden;
   word-wrap: break-word;
+  overflow: hidden;
+  list-style-type: none;
 }
 
-#catalogue-links li a {
+.category {
   font-size: 24px;
+  text-transform: capitalize;
 }
 
-#catalogue-links li a:hover {
+.category:hover {
   text-decoration: underline;
 }
 
@@ -65,10 +66,10 @@ main {
 #commodity-img-info-wrapper {
   display: flex;
   column-gap: 10px;
-  border-bottom: 4px solid var(--blue);
   margin-bottom: 20px;
-  padding: 20px;
   margin-left: 250px;
+  padding: 20px;
+  border-bottom: 4px solid var(--blue);
 }
 
 #commodity-img {
@@ -85,26 +86,29 @@ main {
 }
 
 #commodity-title {
+  padding: 0 5px;
   font-family: 'Nunito', sans-serif;
   font-size: 34px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
-  padding: 0 5px;
 }
 
 #commodity-price {
-  font-size: 20px;
-  font-style: italic;
-  color: var(--blue);
+  padding: 5px;
   border-top: 3px solid var(--blue);
   border-bottom: 3px solid var(--blue);
-  padding: 5px;
+  font-size: 20px;
+  font-style: italic;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 #commodity-desc {
-  font-size: 20px;
-  color: var(--blue);
   padding: 0 5px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 @media screen and (max-width: 950px) {
@@ -146,32 +150,32 @@ main {
 
 /*----- COMMENTS STYLING -----*/
 #comments {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
-  padding: 20px;
   margin-left: 250px;
-  position: relative;
+  padding: 20px;
 }
 
 #comments-title {
   font-family: 'Nunito', sans-serif;
   font-size: 34px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
 }
 
 #leave-comment {
   align-self: flex-end;
-  font-size: 16px;
   width: 200px;
-  color: var(--white);
-  background-color: var(--blue);
+  padding: 4px 10px;
   border: none;
   border-radius: 5px;
-  padding: 4px 10px;
-  cursor: pointer;
+  background-color: var(--blue);
+  font-size: 16px;
   transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
 #leave-comment:hover {
@@ -179,16 +183,16 @@ main {
 }
 
 #comment-form-wrapper {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(128, 128, 128, 0.7);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.7);
 }
 
 #comment-form-wrapper.active {
@@ -204,30 +208,32 @@ main {
   flex-direction: column;
   row-gap: 10px;
   width: 100%;
-  background-color: var(--blue);
-  border-radius: 10px;
   padding: 40px 60px;
+  border-radius: 10px;
+  background-color: var(--blue);
 }
 
 #comment-form-exit {
-  font-size: 40px;
-  color: var(--blue);
-  background: none;
-  border: none;
   position: absolute;
   top: 10px;
   right: 20px;
-  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 40px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 #comment-form-exit:hover {
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
 }
 
 #evaluation-wrapper {
-  font-size: 20px;
   width: 100%;
+  font-size: 20px;
 }
 
 #evaluation-wrapper label {
@@ -242,22 +248,23 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  writing-mode: vertical-lr;
   width: 100%;
+  writing-mode: vertical-lr;
 }
 
 #comment-textarea {
-  font-size: 20px;
   width: 100%;
   height: 250px;
-  background-color: var(--lightblue);
+  padding: 4px 10px;
   border: none;
   outline: none;
-  padding: 4px 10px;
+  background-color: var(--lightblue);
+  font-size: 20px;
   resize: none;
 }
 
 #comment-textarea::placeholder {
+  -webkit-text-fill-color: var(--white);
   color: var(--white);
 }
 
@@ -266,19 +273,21 @@ main {
 }
 
 #send-comment {
+  width: 100%;
+  padding: 8px 20px;
+  background-color: var(--white);
   font-size: 20px;
   font-weight: 500;
-  width: 100%;
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
-  background-color: var(--white);
-  padding: 8px 20px;
-  cursor: pointer;
   transition: color 0.4s, background-color 0.4s;
+  cursor: pointer;
 }
 
 #send-comment:hover {
-  color: var(--white);
   background-color: var(--lightblue);
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
 }
 
 .comment {
@@ -308,25 +317,29 @@ main {
 .author-name {
   font-size: 24px;
   font-weight: 500;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
 }
 
 .pub-date {
   font-style: italic;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
 }
 
 .comment-text {
   font-size: 18px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  overflow: hidden;
   word-wrap: break-word;
   word-break: break-all;
+  overflow: hidden;
 }
 
 #no-comments {
   font-size: 20px;
   font-style: italic;
+  -webkit-text-fill-color: var(--grey);
   color: var(--grey);
   text-align: center;
 }

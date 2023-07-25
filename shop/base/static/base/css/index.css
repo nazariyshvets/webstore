@@ -4,20 +4,20 @@ main {
 
 /*----- CATALOGUE STYLING -----*/
 #catalogue {
+  padding: 30px 20px;
+  position: fixed;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
   width: 250px;
   height: calc(100vh - 70px);
   background-color: var(--lightblue);
-  padding: 30px 20px;
-  position: fixed;
-  z-index: 20;
   overflow: hidden;
 }
 
 #catalogue-link {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 36px;
   font-weight: 700;
   text-align: center;
@@ -31,16 +31,17 @@ main {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  list-style-type: none;
-  overflow: hidden;
   word-wrap: break-word;
+  overflow: hidden;
+  list-style-type: none;
 }
 
-#catalogue-links li a {
+.category {
   font-size: 24px;
+  text-transform: capitalize;
 }
 
-#catalogue-links li a:hover {
+.category:hover {
   text-decoration: underline;
 }
 
@@ -50,7 +51,7 @@ main {
     padding: 30px 10px;
   }
 
-  #catalogue-links li a {
+  .category {
     font-size: 20px;
   }
 }
@@ -63,16 +64,16 @@ main {
 
 /*----- COMMODITIES STYLING -----*/
 #search-form {
-  padding-left: 250px;
   margin: 20px 0;
+  padding-left: 250px;
 }
 
 #commodities {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 15px;
-  padding: 20px;
   margin-left: 250px;
+  padding: 20px;
 }
 
 .commodity {
@@ -80,9 +81,9 @@ main {
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
-  overflow: hidden;
   box-shadow: 0px 0px 8px black;
   position: relative;
+  overflow: hidden;
 }
 
 .commodity:hover .add-to-cart {
@@ -90,17 +91,18 @@ main {
 }
 
 .add-to-cart {
-  display: none;
-  font-size: 20px;
-  color: var(--blue);
-  border: none;
-  border-radius: 5px;
-  padding: 4px 10px;
   position: absolute;
   right: 10px;
   top: 10px;
-  cursor: pointer;
+  display: none;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .add-to-cart:hover {
@@ -108,11 +110,12 @@ main {
 }
 
 .out-of-stock {
-  font-size: 20px;
-  color: red;
   position: absolute;
   right: 10px;
   top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: red;
+  color: red;
 }
 
 .commodity-img {
@@ -122,15 +125,16 @@ main {
 }
 
 .commodity-title {
-  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  padding: 0 10px;
   font-size: 20px;
   font-weight: 600;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
-  padding: 0 10px;
   text-align: center;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .commodity-title:hover {
@@ -138,10 +142,20 @@ main {
 }
 
 .commodity-price {
-  font-size: 16px;
-  color: var(--blue);
-  padding: 0 10px;
   margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  font-size: 20px;
+  font-style: italic;
+  -webkit-text-fill-color: var(--grey);
+  color: var(--grey);
+  text-align: center;
 }
 
 @media screen and (max-width: 1200px) {
@@ -164,8 +178,8 @@ main {
   }
 
   .add-to-cart {
-    font-size: 16px;
     display: block;
+    font-size: 16px;
   }
 
   .out-of-stock {
@@ -179,20 +193,20 @@ main {
   }
 
   #commodities {
+    margin-left: 0;
     padding: 15px;
     padding-top: 0;
-    margin-left: 0;
   }
 
   .add-to-cart {
-    font-size: 14px;
-    padding: 4px 4px;
     right: 6px;
+    padding: 4px 4px;
+    font-size: 14px;
   }
 
   .out-of-stock {
-    font-size: 14px;
     right: 6px;
+    font-size: 14px;
   }
 }
 
@@ -214,6 +228,7 @@ main {
 
 #pagination a {
   font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-decoration: underline;
 }
@@ -221,6 +236,7 @@ main {
 #current-page {
   font-size: 24px;
   font-weight: 600;
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
 }
 

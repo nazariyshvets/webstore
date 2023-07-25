@@ -14,25 +14,27 @@ main {
   flex-direction: column;
   row-gap: 4px;
   width: 540px;
-  background-color: var(--blue);
-  border-radius: 10px;
   padding: 40px 60px;
+  border-radius: 10px;
+  background-color: var(--blue);
   box-shadow: 0 0 10px black;
 }
 
 #signup-login-form label {
-  font-size: 20px;
-  color: var(--white);
   margin-top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
 }
 
 #signup-login-form input {
-  font-size: 20px;
-  color: var(--white);
-  background-color: var(--lightblue);
+  padding: 4px 10px;
   border: none;
   outline: none;
-  padding: 4px 10px;
+  background-color: var(--lightblue);
+  font-size: 20px;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
 }
 
 #signup-login-form input:focus {
@@ -40,18 +42,20 @@ main {
 }
 
 #signup-login-form input[type="submit"] {
-  font-weight: 500;
-  color: var(--lightblue);
-  background-color: var(--white);
-  padding: 8px 20px;
   margin-top: 10px;
-  cursor: pointer;
+  padding: 8px 20px;
+  background-color: var(--white);
+  font-weight: 500;
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
   transition: color 0.4s, background-color 0.4s;
+  cursor: pointer;
 }
 
 #signup-login-form input[type="submit"]:hover {
-  color: var(--white);
   background-color: var(--lightblue);
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
 }
 
 #signup-login-form input[type="submit"]:focus {
@@ -65,16 +69,18 @@ main {
 
 #login-link,
 #signup-link {
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
   text-decoration: underline;
 }
 
 .errorlist li {
+  -webkit-text-fill-color: red;
   color: red;
-  overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
   word-break: break-all;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 750px) {

@@ -12,9 +12,7 @@
     <ul id="catalogue-links">
       {% for category in categories %}
         <li>
-          <a href="{% url 'base:category' category.title %}"
-            >{{ category.title }}</a
-          >
+          <a href="{% url 'base:category' category.title %}" class="category">{{ category.title }}</a>
         </li>
       {% endfor %}
     </ul>
@@ -27,12 +25,14 @@
         name="search-input"
         placeholder="Введіть назву товару..."
         maxlength="50"
-        value="{{ search_string }}" />
+        value="{{ search_string }}"
+      />
       <button id="search" type="submit">
         <img
           src="{% static 'base/images/search.svg' %}"
           alt="Search"
-          draggable="false" />
+          draggable="false"
+        />
       </button>
     </div>
 
@@ -43,10 +43,7 @@
       <option value="rating">За рейтингом</option>
     </select>
 
-    <select
-      id="commodities-num-per-page"
-      name="commodities-num-per-page"
-      onchange="this.form.submit()">
+    <select id="commodities-num-per-page" name="commodities-num-per-page" onchange="this.form.submit()">
       <option value="10">10</option>
       <option value="15">15</option>
       <option value="20">20</option>
@@ -69,15 +66,19 @@
         <img
           class="commodity-img"
           src="/media/{{ commodity.picture }}"
-          alt="default"
-          draggable="false" />
+          alt="{{ commodity.title }}"
+          draggable="false"
+        />
         <a
           class="commodity-title"
           href="{% url 'base:commodity' commodity.category.title commodity.id %}"
-          >{{ commodity.title }}</a
         >
+          {{ commodity.title }}
+        </a>
         <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
       </div>
+    {% empty %}
+      <p class="empty">Товарів не знайдено</p>
     {% endfor %}
   </div>
 
@@ -88,20 +89,25 @@
         &laquo;
       </a>
       <a
-        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        href="?page={{page_obj.previous_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}"
+      >
         {{ page_obj.previous_page_number }}
       </a>
     {% endif %}
+
     {% if page_obj.has_other_pages %}
       <span id="current-page">{{ page_obj.number }}</span>
     {% endif %}
+
     {% if page_obj.has_next %}
       <a
-        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        href="?page={{page_obj.next_page_number}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}"
+      >
         {{ page_obj.next_page_number }}
       </a>
       <a
-        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}">
+        href="?page={{page_obj.paginator.num_pages}}&search-input={{search_input}}&sort={{sort}}&commodities-num-per-page={{commodities_num_per_page}}"
+      >
         &raquo;
       </a>
     {% endif %}
@@ -110,8 +116,8 @@
 
 {% block scripts %}
   <script>
-    const sort = "{{ sort }}";
-    const commoditiesNumPerPage = "{{ commodities_num_per_page }}";
+    document.getElementById("sort").value = "{{ sort }}";
+    document.getElementById("commodities-num-per-page").value = "{{ commodities_num_per_page }}";
   </script>
-  <script src="{% static 'base/js/index.js' %}"></script>
+  <script src="{% static 'base/js/add-to-cart.js' %}"></script>
 {% endblock %}

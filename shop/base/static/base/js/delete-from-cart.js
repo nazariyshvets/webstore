@@ -1,29 +1,51 @@
-const deleteFromCartBtns = document.getElementsByClassName("delete-from-cart");
+const commoditiesContainer = document.querySelector("#commodities");
 
-Array.from(deleteFromCartBtns).forEach(btn => {
-  btn.addEventListener("click", e => {
-    commodity_id = parseInt(btn.dataset.commodity_id);
+//event listener for "delete from cart" buttons
+commoditiesContainer.addEventListener("click", (e) => {
+  const target = e.target;
+
+  if (target.matches(".delete-from-cart")) {
+    const commodity_id = parseInt(target.dataset.commodity_id);
+
     fetch("/delete-from-cart/", {
       method: "POST",
-      headers: {"Content-Type": "application/json",},
-      body: JSON.stringify({commodity_id: commodity_id})  
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ commodity_id }),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      if(data["success"]) {
-        btn.parentNode.parentNode.removeChild(btn.parentNode);
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          const commodity = target.closest(".commodity");
+          commoditiesContainer.removeChild(commodity);
 
-        if(document.getElementById("commodities").children.length == 0) {
-          document.getElementById("buy").remove();
-          document.getElementById("empty-cart-img").style.display = "inline-block";
-          document.getElementById("empty-cart").style.display = "block";
+          if(commoditiesContainer.children.length == 0) {
+            document.querySelector("#buy").remove();
+            createEmptyCartWidgets();
+          }
         }
-      }
-    });
-  });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Виникла помилка під час видалення товару з кошика");
+      });
+  }
 });
 
-if(document.getElementById("commodities").children.length == 0) {
-  document.getElementById("empty-cart-img").style.display = "inline-block";
-  document.getElementById("empty-cart").style.display = "block";
+if(commoditiesContainer.children.length == 0) {
+  createEmptyCartWidgets();
+}
+
+function createEmptyCartWidgets() {
+  const emptyCartImg = `
+    <img
+      id="empty-cart-img"
+      src="/static/base/images/empty_cart.png"
+      alt="empty cart"
+      draggable="false"
+    />
+  `;
+  const emptyCartText = `
+    <h2 id="empty-cart-text">Кошик порожній</h2>
+  `;
+  document.querySelector("#empty-cart").innerHTML = emptyCartImg + emptyCartText;
 }

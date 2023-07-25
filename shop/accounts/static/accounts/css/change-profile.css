@@ -3,11 +3,11 @@ body {
 }
 
 main {
+  left: 20%;
   justify-content: center;
   align-items: center;
   width: 60%;
   min-height: calc(100vh - 70px);
-  left: 20%;
 }
 
 form {
@@ -15,24 +15,26 @@ form {
   flex-direction: column;
   row-gap: 4px;
   width: 100%;
-  background-color: var(--white);
-  border-radius: 10px;
   padding: 40px 60px;
+  border-radius: 10px;
+  background-color: var(--white);
   box-shadow: 0 0 10px black;
 }
 
 form label {
-  font-size: 20px;
-  color: var(--blue);
   margin-top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 form input {
-  font-size: 20px;
-  color: var(--blue);
+  padding: 4px 10px;
   border: none;
   outline: 2px solid var(--blue);
-  padding: 4px 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
 }
 
 form input:focus {
@@ -40,18 +42,20 @@ form input:focus {
 }
 
 form input[type="submit"] {
-  font-weight: 500;
-  color: var(--blue);
-  background-color: var(--white);
   padding: 8px 20px;
   margin-top: 10px;
-  cursor: pointer;
+  background-color: var(--white);
+  font-weight: 500;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
   transition: color 0.2s, outline 0.2s;
+  cursor: pointer;
 }
 
 form input[type="submit"]:hover {
+  outline: 2px solid var(--lightblue);
+  -webkit-text-fill-color: var(--lightblue);
   color: var(--lightblue);
-  outline: 2px solid var(--lightblue)
 }
 
 form input[type="submit"]:focus {
@@ -59,20 +63,21 @@ form input[type="submit"]:focus {
 }
 
 .errorlist li {
+  -webkit-text-fill-color: red;
   color: red;
 }
 
 @media screen and (max-width: 950px) {
   main {
-    width: 80%;
     left: 10%;
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 750px) {
   main {
-    width: 90%;
     left: 5%;
+    width: 90%;
   }
 
   form {
@@ -82,11 +87,12 @@ form input[type="submit"]:focus {
 
 @media screen and (max-width: 500px) {
   main {
-    width: 94%;
     left: 3%;
+    width: 94%;
   }
 
-  form label, form input {
+  form label,
+  form input {
     font-size: 16px;
   }
 }
