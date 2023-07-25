@@ -23,7 +23,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'InterTech <noreply@host.com>'
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['https://webstore-eta.vercel.app/', '.vercel.app', '.now.sh']
 
 # Application definition
 
