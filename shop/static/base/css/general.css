@@ -1,0 +1,81 @@
+:root {
+  --blue: navy;
+  --lightblue: cornflowerblue;
+  --white: rgb(240, 240, 240);
+  --grey: grey;
+  --lightgrey: lightgrey;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+}
+
+main {
+  position: relative;
+  display: flex;
+  margin-top: 70px;
+}
+
+#messages {
+  position: fixed;
+  left: 15%;
+  top: 50px;
+  z-index: 100;
+  width: 70%;
+  list-style-type: none;
+  animation-name: messages;
+  animation-duration: 3000ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 3000ms;
+}
+
+@keyframes messages {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#messages li {
+  padding: 12px 0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#messages .error {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+#messages .success {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+#messages .info {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+#messages .warning {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+@media screen and (max-width: 750px) {
+  #messages {
+    left: 5%;
+    width: 90%;
+  }
+}

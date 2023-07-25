@@ -1,0 +1,118 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  background-image: url("/media/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#signup-login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: 540px;
+  padding: 40px 60px;
+  border-radius: 10px;
+  background-color: var(--blue);
+  box-shadow: 0 0 10px black;
+}
+
+#signup-login-form label {
+  margin-top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+}
+
+#signup-login-form input {
+  padding: 4px 10px;
+  border: none;
+  outline: none;
+  background-color: var(--lightblue);
+  font-size: 20px;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+}
+
+#signup-login-form input:focus {
+  outline: 2px solid var(--white);
+}
+
+#signup-login-form input[type="submit"] {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: var(--white);
+  font-weight: 500;
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
+  transition: color 0.4s, background-color 0.4s;
+  cursor: pointer;
+}
+
+#signup-login-form input[type="submit"]:hover {
+  background-color: var(--lightblue);
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+}
+
+#signup-login-form input[type="submit"]:focus {
+  outline: none;
+}
+
+#no-account,
+#already-registered {
+  align-self: center;
+}
+
+#login-link,
+#signup-link {
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
+  text-decoration: underline;
+}
+
+.errorlist li {
+  -webkit-text-fill-color: red;
+  color: red;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 750px) {
+  #signup-login-form {
+    width: 80%;
+    padding: 30px 30px;
+  }
+
+  #signup-login-form label,
+  #signup-login-form input {
+    font-size: 16px;
+  }
+
+  #no-account,
+  #already-registered {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #signup-login-form {
+    width: 94%;
+    padding: 20px;
+  }
+
+  #signup-login-form label,
+  #signup-login-form input {
+    font-size: 14px;
+  }
+
+  #no-account,
+  #already-registered {
+    font-size: 12px;
+  }
+}
