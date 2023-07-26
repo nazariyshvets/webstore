@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=100, primary_key=True)
+    id = models.CharField(max_length=100, primary_key=True)
+    title = models.CharField(max_length=100)
     picture = models.URLField(
         default="https://jphxdckjtcxleelhjfhy.supabase.co/storage/v1/object/public/images/default.png")
 

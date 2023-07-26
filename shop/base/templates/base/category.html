@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %} InterTech | {{ title|capfirst }} {% endblock %}
+{% block title %} InterTech | {{ category.title|capfirst }} {% endblock %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/search-form.css' %}" />
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1 id="category-title">{{ title }}</h1>
+  <h1 id="category-title">{{ category.title }}</h1>
 
   <form id="search-form">
     <div id="search-input-wrapper">
@@ -83,7 +83,7 @@
         />
         <a
           class="commodity-title"
-          href="{% url 'base:commodity' title commodity.id %}"
+          href="{% url 'base:commodity' category.id commodity.id %}"
         >
           {{ commodity.title }}
         </a>

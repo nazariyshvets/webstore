@@ -12,7 +12,7 @@
     <ul id="catalogue-links">
       {% for category in categories %}
         <li>
-          <a href="{% url 'base:category' category.title %}" class="category">{{ category.title }}</a>
+          <a href="{% url 'base:category' category.id %}" class="category">{{ category.title }}</a>
         </li>
       {% endfor %}
     </ul>
@@ -71,7 +71,7 @@
         />
         <a
           class="commodity-title"
-          href="{% url 'base:commodity' commodity.category.title commodity.id %}"
+          href="{% url 'base:commodity' commodity.category.id commodity.id %}"
         >
           {{ commodity.title }}
         </a>

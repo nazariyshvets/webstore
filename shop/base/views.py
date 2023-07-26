@@ -68,7 +68,8 @@ def catalogue(request):
 
 def category(request, pk):
     # Initial filtering
-    commodities = Commodity.objects.filter(category__title=pk)
+    category_obj = get_object_or_404(Category, pk=pk)
+    commodities = Commodity.objects.filter(category__id=pk)
 
     # Get unique manufacturers
     all_manufacturers = sorted(
@@ -100,7 +101,7 @@ def category(request, pk):
     selected_manufacturers_string = ",".join(selected_manufacturers)
 
     context = {
-        "title": pk,
+        "category": category_obj,
         "search_string": search_string,
         "sort": sort,
         "commodities_num_per_page": commodities_num_per_page,
@@ -108,12 +109,13 @@ def category(request, pk):
         "all_manufacturers": all_manufacturers,
         "selected_manufacturers_string": selected_manufacturers_string,
     }
+
     return render(request, "base/category.html", context)
 
 
 def commodity(request, category_pk, commodity_pk):
     categories = Category.objects.all()
-    commodity = Commodity.objects.get(pk=commodity_pk)
+    commodity = get_object_or_404(Commodity, pk=commodity_pk)
     comments = Comment.objects.filter(commodity__id=commodity_pk)
     context = {
         "categories": categories,
