@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.db import transaction
 from django.db.models import Sum, F
 from django.core.paginator import Paginator
+from django.utils.timezone import make_aware
 import json
 
 from .models import Category, Commodity, Comment, CommodityEvaluation, CommodityInCart, SoldCommodity
@@ -272,8 +273,12 @@ def form_report(request):
 @login_required
 @permission_required("base.can_form_report", raise_exception=True)
 def report(request, start_date, end_date):
-    sold_commodities = SoldCommodity.objects.filter(
-        selling_date__range=(start_date, end_date))
+    try:
+        start_date = make_aware(start_date)
+        end_date = make_aware(end_date)
+        sold_commodities = SoldCommodity.objects.filter(selling_date__range=(start_date, end_date))
+    except ValueError:
+        sold_commodities = None
 
     if not sold_commodities.exists():
         return render(request, "base/report.html")
