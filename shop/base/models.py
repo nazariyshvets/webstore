@@ -4,16 +4,11 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     title = models.CharField(max_length=100, primary_key=True)
-    picture = models.ImageField(upload_to="categories",
-                                default="default.png")
+    picture = models.URLField(
+        default="https://jphxdckjtcxleelhjfhy.supabase.co/storage/v1/object/public/images/default.png")
 
     def __str__(self):
         return self.title
-
-    # uncomment to automatically add pictures for categories
-    def save(self, *args, **kwargs):
-        self.picture = f"{self.title}.png"
-        super().save(*args, **kwargs)
 
 
 class Manufacturer(models.Model):
@@ -31,8 +26,8 @@ class Commodity(models.Model):
     adding_date = models.DateField(auto_now_add=True)
     quantity = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to="commodities",
-                                default="default.png")
+    picture = models.URLField(
+        default="https://jphxdckjtcxleelhjfhy.supabase.co/storage/v1/object/public/images/default.png")
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
 
     class Meta:
@@ -40,11 +35,6 @@ class Commodity(models.Model):
 
     def __str__(self):
         return self.title
-
-    # uncomment to automatically add pictures for commodities
-    def save(self, *args, **kwargs):
-        self.picture = f"{self.category.title}.png"
-        super().save(*args, **kwargs)
 
 
 class CommodityEvaluation(models.Model):

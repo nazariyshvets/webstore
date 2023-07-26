@@ -1,6 +1,8 @@
 {% extends "base/main.html" %}
 {% load static %}
 
+{% block title %} InterTech | Каталог {% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/catalogue.css' %}" />
 {% endblock %}
@@ -17,7 +19,7 @@
           </div>
           <img
             class="category-img"
-            src="/media/{{ category.picture }}"
+            src="{{ category.picture }}"
             alt="default"
             draggable="false"
           />

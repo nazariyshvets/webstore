@@ -92,6 +92,7 @@ main {
   -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
+  text-transform: capitalize;
 }
 
 #commodity-price {

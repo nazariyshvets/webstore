@@ -1,5 +1,8 @@
 {% extends "base/main.html" %}
 {% load static %}
+{% load humanize %}
+
+{% block title %} InterTech | {{ commodity.title|capfirst }} {% endblock %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/commodity.css' %}" />
@@ -20,7 +23,7 @@
   <div id="commodity-img-info-wrapper">
     <img
       id="commodity-img"
-      src="/media/{{ commodity.picture }}"
+      src="{{ commodity.picture }}"
       alt="{{ commodity.title }}"
       draggable="false"
     />

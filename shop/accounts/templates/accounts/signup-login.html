@@ -1,6 +1,10 @@
 {% extends "base/main.html" %}
 {% load static %}
 
+{% block title %}
+  InterTech | {% if login %} Вхід {% else %} Реєстрація {% endif %}
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="{% static 'accounts/css/signup-login.css' %}" />
 {% endblock %}

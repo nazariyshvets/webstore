@@ -1,5 +1,8 @@
 {% extends "base/main.html" %}
 {% load static %}
+{% load humanize %}
+
+{% block title %} InterTech | {{ title|capfirst }} {% endblock %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/search-form.css' %}" />
@@ -74,7 +77,7 @@
 
         <img
           class="commodity-img"
-          src="/media/{{ commodity.picture }}"
+          src="{{ commodity.picture }}"
           alt="{{ commodity.title }}"
           draggable="false"
         />

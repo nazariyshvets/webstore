@@ -132,6 +132,7 @@ main {
   -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
+  text-transform: capitalize;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;

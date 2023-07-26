@@ -3,7 +3,7 @@ main {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 70px);
-  background-image: url("/media/background.jpg");
+  background-image: url("https://jphxdckjtcxleelhjfhy.supabase.co/storage/v1/object/public/images/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,6 +35,14 @@ main {
   font-size: 20px;
   -webkit-text-fill-color: var(--white);
   color: var(--white);
+}
+
+#signup-login-form input:-webkit-autofill,
+#signup-login-form input:-webkit-autofill:hover,
+#signup-login-form input:-webkit-autofill:focus,
+#signup-login-form input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--white) !important;
 }
 
 #signup-login-form input:focus {
