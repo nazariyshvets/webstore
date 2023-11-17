@@ -9,46 +9,48 @@
 {% endblock %}
 
 {% block content %}
-  <p><i>Кількість продаж</i>: {{ sales_quantity }}</p>
-  <p><i>Сума</i>: {{ sales_sum|intcomma }}₴</p>
-  <p>
-    <i>Найпопулярніший товар</i>: {{ most_popular_commodity.title }} 
-    ({{ most_popular_commodity.category }}, {{ most_popular_commodity.manufacturer }},
-    {{ most_popular_commodity.count }})
-  </p>
-  <p>
-    <i>Найпопулярніша категорія</i>: {{ most_popular_category.category }}
-    ({{ most_popular_category.count }})
-  </p>
-  <p>
-    <i>Найпопулярніший виробник</i>: {{ most_popular_manufacturer.manufacturer }}
-    ({{most_popular_manufacturer.count }})
-  </p>
-  <p>
-    <i>Найдорожчий проданий товар</i>: {{ most_expensive_commodity.title }}
-    ({{most_expensive_commodity.price|intcomma }}₴, {{ most_expensive_commodity.category }},
-    {{ most_expensive_commodity.manufacturer }})
-  </p>
-  <p>
-    <i>Найдешевший проданий товар</i>: {{ cheapest_commodity.title }}
-    ({{cheapest_commodity.price|intcomma }}₴, {{ cheapest_commodity.category }},
-    {{ cheapest_commodity.manufacturer }})
-  </p>
-  <table>
-    <caption>
-      Статистика продаж
-    </caption>
-    <tr>
-      <th>Назва категорії</th>
-      <th>Продані товари (шт)</th>
-      <th>Сума (₴)</th>
-    </tr>
-    {% for category in categories %}
+  <main class="report">
+    <p><i>Кількість продаж</i>: {{ sales_quantity }}</p>
+    <p><i>Сума</i>: {{ sales_sum|intcomma }}₴</p>
+    <p>
+      <i>Найпопулярніший товар</i>: {{ most_popular_commodity.title }} 
+      ({{ most_popular_commodity.category }}, {{ most_popular_commodity.manufacturer }},
+      {{ most_popular_commodity.count }})
+    </p>
+    <p>
+      <i>Найпопулярніша категорія</i>: {{ most_popular_category.category }}
+      ({{ most_popular_category.count }})
+    </p>
+    <p>
+      <i>Найпопулярніший виробник</i>: {{ most_popular_manufacturer.manufacturer }}
+      ({{most_popular_manufacturer.count }})
+    </p>
+    <p>
+      <i>Найдорожчий проданий товар</i>: {{ most_expensive_commodity.title }}
+      ({{most_expensive_commodity.price|intcomma }}₴, {{ most_expensive_commodity.category }},
+      {{ most_expensive_commodity.manufacturer }})
+    </p>
+    <p>
+      <i>Найдешевший проданий товар</i>: {{ cheapest_commodity.title }}
+      ({{cheapest_commodity.price|intcomma }}₴, {{ cheapest_commodity.category }},
+      {{ cheapest_commodity.manufacturer }})
+    </p>
+    <table>
+      <caption>
+        Статистика продаж
+      </caption>
       <tr>
-        <td>{{ category.category }}</td>
-        <td>{{ category.sales_quantity }}</td>
-        <td>{{ category.sales_sum|intcomma }}</td>
+        <th>Назва категорії</th>
+        <th>Продані товари (шт)</th>
+        <th>Сума (₴)</th>
       </tr>
-    {% endfor %}
-  </table>
+      {% for category in categories %}
+        <tr>
+          <td>{{ category.category }}</td>
+          <td>{{ category.sales_quantity }}</td>
+          <td>{{ category.sales_sum|intcomma }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </main>
 {% endblock %}

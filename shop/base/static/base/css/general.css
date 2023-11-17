@@ -1,7 +1,7 @@
 :root {
   --blue: navy;
   --lightblue: cornflowerblue;
-  --white: rgb(240, 240, 240);
+  --white: white;
   --grey: grey;
   --lightgrey: lightgrey;
 }
@@ -16,17 +16,13 @@
   text-decoration: none;
 }
 
-body {
-  position: relative;
-}
-
-main {
+.content {
   position: relative;
   display: flex;
-  margin-top: 70px;
+  min-height: calc(100dvh - 70px);
 }
 
-#messages {
+.messages {
   position: fixed;
   left: 15%;
   top: 50px;
@@ -40,6 +36,30 @@ main {
   animation-delay: 3000ms;
 }
 
+.message {
+  padding: 12px 0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.message.error {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.message.success {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+.message.info {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.message.warning {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
 @keyframes messages {
   from {
     opacity: 1;
@@ -49,32 +69,12 @@ main {
   }
 }
 
-#messages li {
-  padding: 12px 0;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-}
-
-#messages .error {
-  background-color: rgba(255, 0, 0, 0.5);
-}
-
-#messages .success {
-  background-color: rgba(0, 255, 0, 0.5);
-}
-
-#messages .info {
-  background-color: rgba(0, 0, 255, 0.5);
-}
-
-#messages .warning {
-  background-color: rgba(255, 255, 0, 0.5);
-}
-
 @media screen and (max-width: 750px) {
-  #messages {
+  .content {
+    min-height: calc(100dvh - 50px);
+  }
+
+  .messages {
     left: 5%;
     width: 90%;
   }

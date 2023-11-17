@@ -14,7 +14,6 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'base/css/general.css' %}" />
-    <link rel="stylesheet" href="{% static 'base/css/header.css' %}" />
     {% block styles %}{% endblock %}
   </head>
 
@@ -22,19 +21,19 @@
     {% include "base/header.html" %}
     
     {% if messages %}
-      <ul id="messages">
+      <ul class="messages">
         {% for message in messages %}
-          <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>
+          <li {% if message.tags %}class="message {{ message.tags }}" {% endif %}>
             {{ message }}
           </li>
         {% endfor %}
       </ul>
     {% endif %}
 
-    <main>{% block content %} {% endblock %}</main>
+    <div class="content">{% block content %} {% endblock %}</div>
 
-    <script src="{% static 'base/js/header.js' %}"></script>
     <script src="{% static 'base/js/messages.js' %}"></script>
+    <script src="{% static 'base/js/link.js' %}"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

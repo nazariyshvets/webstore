@@ -1,0 +1,17 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/commodities.css' %}" />
+{% endblock %}
+
+<div class="commodities">
+  {% for commodity in page_obj %}
+    {% include "base/commodityCard.html" %}
+  {% empty %}
+    <p class="commodities--empty">Товарів не знайдено</p>
+  {% endfor %}
+</div>
+
+{% block scripts %}
+  <script src="{% static 'base/js/addToCart.js' %}"></script>
+{% endblock %}

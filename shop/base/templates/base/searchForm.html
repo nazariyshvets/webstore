@@ -1,0 +1,45 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/searchForm.css' %}" />
+{% endblock %}
+
+<form class="search-form" autocomplete="off">
+  <div class="search-form--query-wrapper">
+    <input
+      class="search-form--query"
+      name="query"
+      placeholder="Введіть назву товару..."
+      maxlength="50"
+      value="{{ query }}"
+    />
+    <button class="search-form--search" type="submit">
+      <img
+        src="{% static 'base/images/search.svg' %}"
+        alt="Search"
+        class="search-form--search-img"
+        draggable="false"
+      />
+    </button>
+  </div>
+
+  <select class="search-form--sort" name="sort">
+    <option value="rating">За рейтингом</option>
+    <option value="cheap">Від дешевих до дорогих</option>
+    <option value="expensive">Від дорогих до дешевих</option>
+    <option value="novelty">Новинки</option>
+  </select>
+
+  <select class="search-form--limit" name="limit">
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+  </select>
+</form>
+
+{% block scripts %}
+  <script>
+    document.querySelector(".search-form--sort").value = "{{ sort }}";
+    document.querySelector(".search-form--limit").value = "{{ limit }}";
+  </script>  
+{% endblock %}

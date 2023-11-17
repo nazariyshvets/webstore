@@ -1,0 +1,101 @@
+.commodity-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  box-shadow: 0px 0px 8px black;
+  position: relative;
+  overflow: hidden;
+}
+
+.commodity-card:hover .commodity-card--add-to-cart {
+  display: inline-block;
+}
+
+.commodity-card--add-to-cart {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: none;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.commodity-card--add-to-cart:hover {
+  box-shadow: 2px 2px 4px var(--grey);
+}
+
+.commodity-card--out-of-stock {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: red;
+  color: red;
+}
+
+.commodity-card--img {
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.commodity-card--title {
+  display: -webkit-box;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 600;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+  text-align: center;
+  text-transform: capitalize;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.commodity-card--title:hover {
+  text-decoration: underline;
+}
+
+.commodity-card--price {
+  margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+@media screen and (max-width: 950px) {
+  .commodity-card--title {
+    font-size: 18px;
+  }
+
+  .commodity-card--add-to-cart {
+    display: block;
+    font-size: 16px;
+  }
+
+  .commodity-card--out-of-stock {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .commodity-card--add-to-cart {
+    right: 6px;
+    padding: 4px 4px;
+    font-size: 14px;
+  }
+
+  .commodity-card--out-of-stock {
+    right: 6px;
+    font-size: 14px;
+  }
+}

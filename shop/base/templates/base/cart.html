@@ -8,36 +8,51 @@
 {% endblock %}
 
 {% block content %}
-  <h1 id="cart-title">Кошик</h1>
+  <main class="cart">
+    <h1 class="cart--title">Кошик</h1>
 
-  <div id="commodities">
-    {% for commodity in commodities %}
-      <div class="commodity">
-        <div class="delete-from-cart" data-commodity_id="{{ commodity.id }}">x</div>
+    {% if commodities %}
+      <div class="cart--commodities">
+        {% for commodity in commodities %}
+          <div class="cart--commodity" data-id="{{ commodity.id }}" data-price="{{ commodity.price }}" data-quantity="1">
+            <div class="cart--quantity-control">
+              <button class="cart--decrease">&#8722;</button>
+              <span class="cart--quantity-display">1</span>
+              <button class="cart--increase">&#43;</button>
+            </div>
+            <a href="{% url 'base:delete-from-cart' commodity.id %}" class="cart--delete-from-cart">&#10005;</a>
+            <img
+              src="{{ commodity.picture }}"
+              alt="{{ commodity.title }}"
+              class="cart--commodity-img"
+              draggable="false"
+            />
+            <a
+              href="{% url 'base:commodity' commodity.category.title commodity.id %}"
+              class="cart--commodity-title"
+            >
+              {{ commodity.title }}
+            </a>
+            <p class="cart--commodity-price">Ціна: {{ commodity.price }}₴</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <button class="cart--buy">Купити (<span class="cart--buy--price"></span> ₴)</button>
+    {% else %}
+      <div class="cart--empty">
         <img
-          class="commodity-img"
-          src="{{ commodity.picture }}"
-          alt="{{ commodity.title }}"
+          src="/static/base/images/empty_cart.png"
+          alt="empty cart"
+          class="cart--img-empty"
           draggable="false"
         />
-        <a
-          class="commodity-title"
-          href="{% url 'base:commodity' commodity.category.title commodity.id %}"
-        >
-          {{ commodity.title }}
-        </a>
-        <p class="commodity-price">Ціна: {{ commodity.price }}₴</p>
+        <h2 class="cart--text-empty">Кошик порожній</h2>
       </div>
-    {% endfor %}
-  </div>
-
-  {% if commodities %}
-    <a id="buy" href="{% url 'base:buy' %}">Купити</a>
-  {% endif %}
-
-  <div id="empty-cart"></div>
+    {% endif %}
+  </main>
 {% endblock %}
 
 {% block scripts %}
-  <script src="{% static 'base/js/delete-from-cart.js' %}"></script>
+  <script src="{% static 'base/js/cart.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} InterTech | Профіль {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'accounts/css/userProfile.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="user-profile">
+    <a class="user-profile--logout" href="{% url 'accounts:logout' %}">Вийти</a>
+    <img
+      src="{% static 'base/images/default-user.png' %}"
+      alt="Користувач"
+      class="user-profile--img"
+      draggable="false"
+    />
+    <p class="user-profile--username">@{{ profile.user.username }}</p>
+    <ul class="user-profile--info">
+      <li>Ім'я: {{ profile.user.first_name }}</li>
+      <li>Прізвище: {{ profile.user.last_name }}</li>
+      <li>Електронна пошта: {{ profile.user.email }}</li>
+      <li>Баланс: {{ profile.balance|intcomma }}₴</li>
+      <li>Бонусний баланс: {{ profile.bonuses|intcomma }}₴</li>
+    </ul>
+    <a class="user-profile--btn" href="{% url 'accounts:change-profile' %}">Змінити</a>
+    <a class="user-profile--btn" href="{% url 'accounts:password-change' %}">
+      Змінити пароль
+    </a>
+    {% if perms.base.can_form_report %}
+      <a class="user-profile--btn" href="{% url 'base:form-report' %}">Сформувати звіт</a>
+    {% endif %}
+  </main>
+{% endblock %}

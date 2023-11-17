@@ -1,0 +1,96 @@
+body {
+  background-color: var(--lightblue);
+}
+
+.change-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin-inline: auto;
+  min-height: 100%;
+}
+
+.change-profile--form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: 100%;
+  padding: 40px 60px;
+  border-radius: 10px;
+  background-color: var(--white);
+  box-shadow: 0 0 10px black;
+}
+
+.change-profile--form label {
+  margin-top: 10px;
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+.change-profile--form input {
+  padding: 4px 10px;
+  border: none;
+  outline: 2px solid var(--blue);
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+.change-profile--form input:focus {
+  outline: 2px solid var(--lightblue);
+}
+
+.change-profile--submit {
+  padding: 8px 20px;
+  margin-top: 10px;
+  background-color: var(--white);
+  font-weight: 500;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+  transition: color 0.2s, outline 0.2s;
+  cursor: pointer;
+}
+
+.change-profile--submit:hover {
+  outline: 2px solid var(--lightblue);
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
+}
+
+.errorlist li {
+  -webkit-text-fill-color: red;
+  color: red;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 950px) {
+  .change-profile {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .change-profile {
+    width: 90%;
+  }
+
+  .change-profile--form {
+    padding: 40px 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .change-profile {
+    width: 94%;
+  }
+
+  .change-profile--form label,
+  .change-profile--form input {
+    font-size: 16px;
+  }
+}

@@ -1,12 +1,14 @@
-const hamburgerMenu = document.getElementById("hamburger-menu");
-const headerNav = document.getElementById("header-nav");
+window.addEventListener("load", () => {
+  const menu = document.querySelector(".header--menu");
+  const nav = document.querySelector(".header--nav");
 
-hamburgerMenu.addEventListener("click", e => {
-  if(hamburgerMenu.classList.contains("active")) {
-    hamburgerMenu.classList.remove("active");
-    headerNav.classList.remove("active");
-  } else {
-    hamburgerMenu.classList.add("active");
-    headerNav.classList.add("active");
-  }
+  menu?.addEventListener("click", () => {
+    if (menu.classList.contains("active")) {
+      menu.classList.remove("active");
+      nav.classList.remove("active");
+    } else {
+      menu.classList.add("active");
+      nav.classList.add("active");
+    }
+  });
 });

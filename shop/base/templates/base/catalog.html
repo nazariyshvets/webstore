@@ -1,0 +1,32 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block title %} InterTech | Каталог {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/catalog.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="catalog">
+    <h1 class="catalog--title">Каталог</h1>
+    <div class="catalog--categories">
+      {% for category in categories %}
+        <a href="{% url 'base:category' category.id %}">
+          <div class="catalog--category">
+            <div class="catalog--category-title-wrapper">
+              <h2 class="catalog--category-title">{{ category.title }}</h2>
+              <span class="catalog--category-title-underline"></span>
+            </div>
+            <img
+              src="{{ category.picture }}"
+              alt="{{ category.title }}"
+              class="catalog--category-img"
+              draggable="false"
+            />
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

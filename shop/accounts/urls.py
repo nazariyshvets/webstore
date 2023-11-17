@@ -11,6 +11,4 @@ urlpatterns = [
     path("profile/change-profile/", views.change_profile, name="change-profile"),
     path("profile/change-password/",
          views.UpdatePassword.as_view(), name="password-change"),
-    path("profile/change-password/done/",
-         views.PasswordChangeDone.as_view(), name="password-change-done"),
 ]

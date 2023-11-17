@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/commodityCard.css' %}" />
+{% endblock %}
+
+<div class="commodity-card" data-id="{{ commodity.id }}" data-addedToCart="false">
+  {% if user.is_authenticated %}
+    {% if commodity.quantity > 0 %}
+      <button class="commodity-card--add-to-cart">
+        Додати в кошик
+      </button>
+    {% else %}
+      <p class="commodity-card--out-of-stock">Немає в наявності</p>
+    {% endif %}
+  {% endif %}
+  
+  <img
+    src="{{ commodity.picture }}"
+    alt="{{ commodity.title }}"
+    class="commodity-card--img"
+    draggable="false"
+  />
+  <a
+    href="{% url 'base:commodity' commodity.category.id commodity.id %}"
+    class="commodity-card--title"
+  >
+    {{ commodity.title }}
+  </a>
+  <p class="commodity-card--price">Ціна: {{ commodity.price }}₴</p>
+</div>

@@ -1,22 +1,33 @@
-<header>
-  <a id="brand" href="{% url 'base:index' %}">InterTech</a>
+{% load static %}
 
-  <nav id="header-nav">
-    <ul id="nav-links">
-      <li><a href="{% url 'base:catalogue' %}">Каталог</a></li>
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/header.css' %}" />
+{% endblock %}
+
+<header>
+  <a class="header--brand" href="{% url 'base:index' %}">InterTech</a>
+
+  <nav class="header--nav">
+    <ul class="header--nav-links">
+      <li><a href="{% url 'base:catalog' %}" class="header--nav-link">Каталог</a></li>
       {% if user.is_authenticated %}
-        <li><a href="{% url 'base:cart' %}">Кошик</a></li>
-        <li><a href="{% url 'accounts:profile' %}">Профіль</a></li>
+        <li><a href="{% url 'base:cart' %}" class="header--nav-link">Кошик</a></li>
+        <li><a href="{% url 'accounts:profile' %}" class="header--nav-link">Профіль</a></li>
       {% else %}
-        <li><a href="{% url 'accounts:login' %}">Вхід</a></li>
-        <li><a href="{% url 'accounts:sign-up' %}">Реєстрація</a></li>
+        <li><a href="{% url 'accounts:login' %}" class="header--nav-link">Вхід</a></li>
+        <li><a href="{% url 'accounts:sign-up' %}" class="header--nav-link">Реєстрація</a></li>
       {% endif %}
     </ul>
   </nav>
 
-  <div id="hamburger-menu">
-    <span></span>
-    <span></span>
-    <span></span>
+  <div class="header--menu">
+    <span class="header--menu-bar"></span>
+    <span class="header--menu-bar"></span>
+    <span class="header--menu-bar"></span>
   </div>
 </header>
+
+{% block scripts %}
+  <script src="{% static 'base/js/header.js' %}"></script>
+{% endblock %}
+

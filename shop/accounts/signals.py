@@ -10,22 +10,22 @@ from base.models import Cart
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+  if created:
+    Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
-    if created:
-        Cart.objects.create(user=instance)
+  if created:
+    Cart.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def send_greeting_email(sender, instance, created, **kwargs):
-    if created:
-        title = "Обліковий запис успішно створено"
-        message = f"Акаунт з ім'ям користувача @{instance.username} на сайті InterTech було успішно створено"
-        receipient = instance.email
+  if created:
+    title = "Обліковий запис успішно створено"
+    message = f"Акаунт з ім'ям користувача @{instance.username} на сайті InterTech було успішно створено"
+    receipient = instance.email
 
-        send_mail(title, message, settings.DEFAULT_FROM_EMAIL,
-                  [receipient,], fail_silently=True)
+    send_mail(title, message, settings.DEFAULT_FROM_EMAIL,
+              [receipient,], fail_silently=True)

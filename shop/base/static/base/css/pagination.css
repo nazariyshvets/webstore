@@ -1,0 +1,21 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  width: 100%;
+}
+
+.pagination--link {
+  font-size: 20px;
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.pagination--current-page {
+  font-size: 24px;
+  font-weight: 600;
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
+}

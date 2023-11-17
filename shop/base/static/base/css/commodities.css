@@ -1,0 +1,27 @@
+.commodities {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+.commodities--empty {
+  grid-column: 1 / -1;
+  font-size: 20px;
+  font-style: italic;
+  -webkit-text-fill-color: var(--grey);
+  color: var(--grey);
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .commodities {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .commodities {
+    grid-template-columns: 1fr 1fr;
+  }
+}

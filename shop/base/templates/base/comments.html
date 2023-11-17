@@ -1,0 +1,64 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/comments.css' %}" />
+{% endblock %}
+
+<div class="comments">
+  <h1 class="comments--title">Коментарі</h1>
+
+  {% if user.is_authenticated %}
+    <button class="comments--open-modal">Залишити коментар</button>
+  {% endif %}
+
+  <div class="comments--modal">
+    <form
+      action="{% url 'base:comment' category_pk commodity.id %}"
+      method="POST"
+      class="comments--form"
+    >
+      {% csrf_token %}
+      <button type="button" class="comments--close-modal">&#10005;</button>
+
+      <div class="comments--evaluation-wrapper">
+        <label for="comments--evaluation" class="comments--evaluation-title">Оцінка товару:</label>
+        <input
+          type="range"
+          id="comments--evaluation"
+          class="comments--evaluation"
+          name="evaluation"
+          min="1"
+          max="5"
+          value="3"
+          step="1"
+          list="tickmarks" />
+        <datalist class="comments--tickmarks">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <textarea
+        class="comments--comment"
+        name="comment"
+        maxlength="1000"
+        placeholder="Напишіть відгук про товар..."
+        required
+      ></textarea>
+      <button class="comments--send-comment" type="submit">Надіслати</button>
+    </form>
+  </div>
+
+  {% for comment in comments %}
+    {% include "base/comment.html" %}
+  {% empty %}
+    <p class="comments--no-comments">Коментарів немає</p>
+  {% endfor %}
+</div>
+
+{% block scripts %}
+  <script src="{% static 'base/js/form.js' %}"></script>
+  <script src="{% static 'base/js/comments.js' %}"></script>
+{% endblock %}

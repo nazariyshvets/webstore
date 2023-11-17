@@ -1,4 +1,8 @@
-setTimeout(function() {
-  let messages = document.getElementById("messages");
-  if(messages)messages.remove();
-}, 8000);
+window.addEventListener("load", () =>
+  setTimeout(() => {
+    const messages = document.querySelector(".messages");
+    if (messages) {
+      messages.remove();
+    }
+  }, 8000)
+);

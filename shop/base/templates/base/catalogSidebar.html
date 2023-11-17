@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/catalogSidebar.css' %}" />
+{% endblock %}
+
+<aside class="catalog-sidebar">
+  <a class="catalog-sidebar--link" href="{% url 'base:catalog' %}">Каталог</a>
+  <ul class="catalog-sidebar--categories">
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'base:category' category.id %}" class="catalog-sidebar--category">{{ category.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</aside>

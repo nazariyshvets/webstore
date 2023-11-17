@@ -1,0 +1,27 @@
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/comment.css' %}" />
+{% endblock %}
+
+<div class="comment">
+  <img
+    src="{% static 'base/images/default-user.png' %}"
+    alt="Користувач"
+    class="comment--author-img"
+    draggable="false" />
+  <div class="comment--info">
+    <div class="comment--author-name-wrapper">
+      <p class="comment--author-name">
+        {% if comment.author.username == user.username %}
+          Ви
+        {% else %} 
+          {{comment.author.first_name }} {{ comment.author.last_name }}
+        {% endif %}
+      </p>
+      <p class="comment--pub-date">{{ comment.sending_datetime }}</p>
+    </div>
+
+    <p class="comment--text">{{ comment.text }}</p>
+  </div>
+</div>

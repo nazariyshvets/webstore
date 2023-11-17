@@ -1,0 +1,59 @@
+.catalog-sidebar {
+  position: fixed;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  width: 250px;
+  min-height: 100dvh;
+  padding: 30px 20px;
+  background-color: var(--lightblue);
+  overflow: hidden;
+}
+
+.catalog-sidebar--link {
+  font-family: "Nunito", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.catalog-sidebar--link:hover {
+  text-decoration: underline;
+}
+
+.catalog-sidebar--categories {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  word-wrap: break-word;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.catalog-sidebar--category {
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+.catalog-sidebar--category:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 950px) {
+  .catalog-sidebar {
+    width: 200px;
+    padding: 30px 10px;
+  }
+
+  .catalog-sidebar--category {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .catalog-sidebar {
+    display: none;
+  }
+}

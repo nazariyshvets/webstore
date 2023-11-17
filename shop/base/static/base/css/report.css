@@ -2,12 +2,13 @@ body {
   background-color: var(--lightblue);
 }
 
-main {
-  left: 20%;
+.report {
+  display: flex;
   flex-direction: column;
   row-gap: 4px;
   width: 60%;
-  min-height: calc(100vh - 70px);
+  min-height: 100%;
+  margin-inline: auto;
   padding: 20px 40px;
   background-color: var(--white);
 }
@@ -36,23 +37,20 @@ td {
 }
 
 @media screen and (max-width: 950px) {
-  main {
-    left: 10%;
+  .report {
     width: 80%;
   }
 }
 
 @media screen and (max-width: 750px) {
-  main {
-    left: 5%;
+  .report {
     width: 90%;
   }
 }
 
 @media screen and (max-width: 500px) {
-  main {
-    left: 3%;
+  .report {
     width: 94%;
-    padding: 10px 10px;
+    padding: 10px;
   }
 }

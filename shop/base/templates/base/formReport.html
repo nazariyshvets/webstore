@@ -1,0 +1,23 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block title %} InterTech | Сформувати звіт про продажі {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/formReport.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="form-report">
+    <form class="form-report--form" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Підтвердити" class="form-report--submit" />
+    </form>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'base/js/preventMultipleFormSubmission.js' %}"></script>
+  <script src="{% static 'base/js/formReport.js' %}"></script>
+{% endblock %}
