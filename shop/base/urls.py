@@ -11,10 +11,7 @@ urlpatterns = [
     path("catalog/<str:category_pk>/<int:commodity_pk>/comment/",
          views.comment, name="comment"),
     path("cart/", views.cart, name="cart"),
-    path("cart/buy/", views.buy, name="buy"),
     path("add-to-cart/", views.add_to_cart, name="add-to-cart"),
     path("delete-from-cart/<int:commodity_pk>",
          views.delete_from_cart, name="delete-from-cart"),
-    path("form-report/", views.form_report, name="form-report"),
-    path("report/<str:start_date>/<str:end_date>/", views.report, name="report")
 ]

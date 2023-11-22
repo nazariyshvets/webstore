@@ -48,10 +48,10 @@ class Comment(models.Model):
   text = models.TextField(max_length=1000)
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE)
-  sending_datetime = models.DateTimeField(auto_now_add=True)
+  timestamp = models.DateTimeField(auto_now_add=True)
 
   class Meta:
-    ordering = ["-sending_datetime"]
+    ordering = ["-timestamp"]
 
 
 class Cart(models.Model):
@@ -65,19 +65,3 @@ class Cart(models.Model):
 class CommodityInCart(models.Model):
   commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE)
   cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-
-
-class SoldCommodity(models.Model):
-  commodity_id = models.BigIntegerField()
-  title = models.CharField(max_length=100)
-  price = models.DecimalField(max_digits=9, decimal_places=2)
-  category = models.CharField(max_length=100)
-  manufacturer = models.CharField(max_length=100)
-  selling_date = models.DateField(auto_now_add=True)
-  username = models.CharField(max_length=100)
-
-  class Meta:
-    permissions = (("can_form_report", "can form report"),)
-
-  def __str__(self):
-    return self.title

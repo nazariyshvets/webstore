@@ -1,0 +1,57 @@
+body {
+  background-color: var(--lightblue);
+}
+
+.report {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: 60%;
+  min-height: 100%;
+  margin-inline: auto;
+  padding: 20px 40px;
+  background-color: var(--white);
+}
+
+p,
+caption,
+th,
+td {
+  -webkit-text-fill-color: var(--blue);
+  color: var(--blue);
+}
+
+i {
+  -webkit-text-fill-color: var(--lightblue);
+  color: var(--lightblue);
+}
+
+table {
+  margin-top: 20px;
+  background-color: var(--lightblue);
+}
+
+th,
+td {
+  padding: 5px;
+  background-color: var(--white);
+}
+
+@media screen and (max-width: 950px) {
+  .report {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .report {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .report {
+    width: 94%;
+    padding: 10px;
+  }
+}

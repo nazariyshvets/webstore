@@ -1,16 +1,16 @@
 function handleLinkClick(event) {
   const link = event.target.closest("a");
 
-  if(!link) {
+  if (!link) {
     return;
   }
 
   if (link.dataset.clicked === "true") {
     event.preventDefault();
-    return;
+  } else {
+    link.dataset.clicked = "true";
+    setTimeout(() => (link.dataset.clicked = "false"), 2000);
   }
-
-  link.dataset.clicked = "true";
 }
 
 document.addEventListener("click", handleLinkClick);

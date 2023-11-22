@@ -28,7 +28,7 @@
               draggable="false"
             />
             <a
-              href="{% url 'base:commodity' commodity.category.title commodity.id %}"
+              href="{% url 'base:commodity' commodity.category.id commodity.id %}"
               class="cart--commodity-title"
             >
               {{ commodity.title }}
@@ -38,7 +38,12 @@
         {% endfor %}
       </div>
 
-      <button class="cart--buy">Купити (<span class="cart--buy--price"></span> ₴)</button>
+      <form method="POST" action="{% url 'purchase:pay' %}" class="cart--form">
+        {% csrf_token %}
+        <input type="hidden" name="ids" />
+        <input type="hidden" name="quantities" />
+        <button type="submit" class="cart--buy">Купити (<span class="cart--buy--price"></span>₴)</button>
+      </form>
     {% else %}
       <div class="cart--empty">
         <img
@@ -54,5 +59,6 @@
 {% endblock %}
 
 {% block scripts %}
+  <script src="{% static 'base/js/form.js' %}"></script>
   <script src="{% static 'base/js/cart.js' %}"></script>
 {% endblock %}

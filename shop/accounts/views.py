@@ -1,9 +1,8 @@
-from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 from .forms import RegisterForm, LoginForm, ProfileChangeForm, CustomPasswordChangeForm
@@ -18,9 +17,9 @@ def register(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      messages.success(request, "Реєстрація пройшла успішно!")
+      messages.success(request, "Реєстрація пройшла успішно")
       return redirect("base:index")
-    messages.error(request, "Помилка реєстрації. Неправильна інформація!")
+    messages.error(request, "Помилка реєстрації. Неправильна інформація")
   else:
     form = RegisterForm()
 
@@ -70,10 +69,10 @@ def change_profile(request):
     form = ProfileChangeForm(request.POST, instance=request.user)
     if form.is_valid():
       form.save()
-      messages.success(request, "Дані успішно оновлено!")
+      messages.success(request, "Дані успішно оновлено")
       return redirect("accounts:profile")
     else:
-      messages.error(request, "Помилка. Неправильні дані!")
+      messages.error(request, "Помилка. Неправильні дані")
   else:
     data = {
         "first_name": request.user.first_name,

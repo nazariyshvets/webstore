@@ -1,0 +1,26 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block title %} InterTech | Покупка {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'purchase/css/pay.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div id="liqpay-checkout"></div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    window.LiqPayCheckoutCallback = () => {
+      LiqPayCheckout.init({
+        data: "{{ data }}",
+        signature: "{{ signature }}",
+        embedTo: "#liqpay-checkout",
+        mode: "embed",
+      })
+    };
+  </script>
+  <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
+{% endblock %}

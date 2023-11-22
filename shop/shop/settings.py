@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
@@ -23,8 +23,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'InterTech <noreply@host.com>'
 
-ALLOWED_HOSTS = ['localhost',
-                 'https://webstore-eta.vercel.app/', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['https://webstore-eta.vercel.app/']
 
 # Application definition
 
@@ -37,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'base',
-    'accounts'
+    'accounts',
+    'purchase'
 ]
 
 MIDDLEWARE = [
@@ -128,7 +128,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'base', 'static'),
-    os.path.join(BASE_DIR, 'accounts', 'static')
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'purchase', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
@@ -147,3 +148,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 config_file = os.path.join(BASE_DIR, '.env')
 if os.path.exists(config_file):
   config.read(config_file)  # type: ignore
+
+LIQPAY_PUBLIC_KEY = config("LIQPAY_PUBLIC_KEY")
+LIQPAY_PRIVATE_KEY = config("LIQPAY_PRIVATE_KEY")

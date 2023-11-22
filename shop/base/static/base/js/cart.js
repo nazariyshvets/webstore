@@ -1,12 +1,12 @@
 window.addEventListener("load", () => {
   const commoditiesContainer = document.querySelector(".cart--commodities");
-  const buyBtn = document.querySelector(".cart--buy");
+  const form = document.querySelector(".cart--form");
 
   commoditiesContainer?.addEventListener(
     "click",
     handleCommoditiesContainerClick
   );
-  buyBtn?.addEventListener("click", handleBuyBtnClick);
+  form?.addEventListener("submit", handleFormSubmit);
 
   updateTotalPriceDisplay();
 });
@@ -42,13 +42,21 @@ function handleIncreaseBtnClick(target) {
 }
 
 function updateQuantityDisplay(commodity) {
-  commodity.querySelector(".cart--quantity-display").textContent =
-    commodity.dataset.quantity;
+  const quantityDisplay = commodity.querySelector(".cart--quantity-display");
+
+  if (quantityDisplay) {
+    quantityDisplay.textContent = commodity.dataset.quantity;
+  }
 }
 
 function updateTotalPriceDisplay() {
-  document.querySelector(".cart--buy--price").textContent =
-    formatNumberWithSpaces(calculateTotalPrice().replace(".", ","));
+  const totalPriceDisplay = document.querySelector(".cart--buy--price");
+
+  if (totalPriceDisplay) {
+    totalPriceDisplay.textContent = formatNumberWithSpaces(
+      calculateTotalPrice().replace(".", ",")
+    );
+  }
 }
 
 function calculateTotalPrice() {
@@ -68,25 +76,27 @@ function formatNumberWithSpaces(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-function handleBuyBtnClick(event) {
-  const buyBtn = event.currentTarget;
+function handleFormSubmit(event) {
+  event.preventDefault();
 
-  if (buyBtn.disabled) return;
-  buyBtn.disabled = true;
+  const form = event.currentTarget;
+
+  if (isFormBeingSubmitted(form)) {
+    return;
+  }
+  setFormIsBeingSubmitted(form);
 
   const commodities = document.querySelectorAll(".cart--commodity");
-  const data = [...commodities].map((commodity) => ({
-    commodity_id: parseInt(commodity.dataset.id),
-    quantity: parseInt(commodity.dataset.quantity),
-  }));
+  const ids = [];
+  const quantities = [];
 
-  fetch("/cart/buy/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .catch((error) => {
-      console.error("Error:", error);
-    })
-    .finally(() => window.location.reload());
+  [...commodities].forEach((commodity) => {
+    ids.push(parseInt(commodity.dataset.id));
+    quantities.push(parseInt(commodity.dataset.quantity));
+  });
+
+  form.elements["ids"].value = ids.join(",");
+  form.elements["quantities"].value = quantities.join(",");
+
+  form.submit();
 }

@@ -29,8 +29,11 @@
     <a class="user-profile--btn" href="{% url 'accounts:password-change' %}">
       Змінити пароль
     </a>
-    {% if perms.base.can_form_report %}
-      <a class="user-profile--btn" href="{% url 'base:form-report' %}">Сформувати звіт</a>
+    <a class="user-profile--btn" href="{% url 'purchase:user-payments' %}">
+      Мої платежі
+    </a>
+    {% if perms.purchase.can_form_report %}
+      <a class="user-profile--btn" href="{% url 'purchase:form-report' %}">Сформувати звіт</a>
     {% endif %}
   </main>
 {% endblock %}
