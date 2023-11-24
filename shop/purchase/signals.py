@@ -5,14 +5,14 @@ from django.conf import settings
 
 from .models import Payment
 
-payment_done = dispatch.Signal(["customer", "order_id", "purchased_commodities"])
+payment_done = dispatch.Signal(["customer", "payment_id", "purchased_commodities"])
 
 
 @receiver(payment_done, sender=Payment)
-def send_payment_email(sender, customer, order_id, purchased_commodities, **kwargs):
+def send_payment_email(sender, customer, payment_id, purchased_commodities, **kwargs):
   title = "Покупку успішно здійснено"
   message = f"Покупку на сайті InterTech з акаунта @{customer.username} було успішно здійснено\n"
-  message += f"ID транзакції: {order_id}\n"
+  message += f"ID транзакції: {payment_id}\n"
   message += "Куплені товари:\n"
   amount = 0
 

@@ -78,4 +78,14 @@
     left: 5%;
     width: 90%;
   }
+
+  .message {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .message {
+    font-size: 14px;
+  }
 }

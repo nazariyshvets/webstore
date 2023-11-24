@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
@@ -23,7 +23,8 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'InterTech <noreply@host.com>'
 
-ALLOWED_HOSTS = ['https://webstore-eta.vercel.app/', '.vercel.app']
+ALLOWED_HOSTS = ['https://webstore-eta.vercel.app/',
+                 '.vercel.app', 'localhost']
 
 # Application definition
 

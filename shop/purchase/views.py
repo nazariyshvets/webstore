@@ -88,7 +88,7 @@ class PayCallbackView(View):
       response = liqpay.decode_data_from_str(data)
 
       if response.get("status") == "sandbox":
-        order_id = response.get("order_id")
+        payment_id = int(response.get("payment_id"))
         info = response.get("info").split(";")
         user_id = int(info[0])
         ids = [int(id) for id in info[1].split(",")]
@@ -100,7 +100,7 @@ class PayCallbackView(View):
 
         with transaction.atomic():
           payment = Payment.objects.create(
-              order_id=order_id, customer=user_profile.user)
+              payment_id=payment_id, customer=user_profile.user)
 
           for commodity, quantity in zip(commodities, quantities):
             commodity.quantity -= quantity
@@ -129,7 +129,7 @@ class PayCallbackView(View):
         payment_done.send(
             sender=Payment,
             customer=user_profile.user,
-            order_id=order_id,
+            payment_id=payment_id,
             purchased_commodities=purchased_commodities
         )
 
@@ -235,7 +235,7 @@ def user_payments(request):
       commodities_data.append(commodity_data)
 
     payment_info = {
-        "order_id": payment.order_id,
+        "payment_id": payment.payment_id,
         "datetime": payment.timestamp,
         "commodities": commodities_data,
         "total_price": sum(item["price"] for item in commodities_data),

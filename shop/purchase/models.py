@@ -4,7 +4,7 @@ from base.models import Commodity
 
 
 class Payment(models.Model):
-  order_id = models.CharField(max_length=255, primary_key=True)
+  payment_id = models.PositiveBigIntegerField(primary_key=True)
   customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
   timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -12,7 +12,7 @@ class Payment(models.Model):
     permissions = (("can_form_report", "can form report"),)
 
   def __str__(self):
-    return self.order_id
+    return self.payment_id
 
 
 class PurchasedCommodity(models.Model):

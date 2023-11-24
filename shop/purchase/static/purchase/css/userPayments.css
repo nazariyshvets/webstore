@@ -28,6 +28,7 @@ body {
 
 .user-payments--table {
   background-color: var(--lightblue);
+  word-break: break-all;
 }
 
 .user-payments--table th,
@@ -69,5 +70,9 @@ body {
   .user-payments {
     width: 94%;
     padding: 10px;
+  }
+
+  .user-payments--table {
+    font-size: 12px;
   }
 }
