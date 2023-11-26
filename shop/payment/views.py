@@ -158,7 +158,7 @@ def replenishment(request):
           "version": "3",
           "sandbox": 1,  # sandbox mode, set to 1 to enable it
           # url to callback view
-          "server_url": "https://db6b-46-211-124-152.ngrok-free.app/replenishment-callback/",
+          "server_url": "https://webstore-eta.vercel.app/replenishment-callback/",
           "info": f"{request.user.id}"
       }
       signature = liqpay.cnb_signature(params)
