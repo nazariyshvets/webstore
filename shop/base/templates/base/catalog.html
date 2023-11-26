@@ -15,7 +15,7 @@
         <a href="{% url 'base:category' category.id %}">
           <div class="catalog--category">
             <div class="catalog--category-title-wrapper">
-              <h2 class="catalog--category-title">{{ category.title }}</h2>
+              <h2 class="catalog--category-title">{{ category.title|capfirst }}</h2>
               <span class="catalog--category-title-underline"></span>
             </div>
             <img

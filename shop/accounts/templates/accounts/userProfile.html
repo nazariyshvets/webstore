@@ -25,15 +25,18 @@
       <li>Баланс: {{ profile.balance|intcomma }}₴</li>
       <li>Бонусний баланс: {{ profile.bonuses|intcomma }}₴</li>
     </ul>
+    <a class="user-profile--btn" href="{% url 'payment:replenishment' %}">
+      Поповнити баланс
+    </a>
     <a class="user-profile--btn" href="{% url 'accounts:change-profile' %}">Змінити</a>
     <a class="user-profile--btn" href="{% url 'accounts:password-change' %}">
       Змінити пароль
     </a>
-    <a class="user-profile--btn" href="{% url 'purchase:user-payments' %}">
+    <a class="user-profile--btn" href="{% url 'payment:user-payments' %}">
       Мої платежі
     </a>
-    {% if perms.purchase.can_form_report %}
-      <a class="user-profile--btn" href="{% url 'purchase:form-report' %}">Сформувати звіт</a>
+    {% if perms.payment.can_form_report %}
+      <a class="user-profile--btn" href="{% url 'payment:form-report' %}">Сформувати звіт</a>
     {% endif %}
   </main>
 {% endblock %}

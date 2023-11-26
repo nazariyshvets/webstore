@@ -1,0 +1,94 @@
+{% load custom_filters %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(211, 211, 211);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: rgb(0, 0, 128);
+      }
+
+      h1 {
+        color: rgb(0, 0, 128);
+      }
+
+      p {
+        color: rgb(128, 128, 128);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid rgb(211, 211, 211);
+        text-align: left;
+      }
+
+      a {
+        color: rgb(100, 149, 237);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        color: rgb(0, 0, 128);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Платіж успішно здійснено!</h1>
+      <p>
+        Дякуємо, що обрали нас для своїх покупок. Платіж на сайті
+        <a href="https://webstore-eta.vercel.app/" target="_blank">InterTech</a>
+        був успішно здійснений.
+      </p>
+      <p>Деталі платежу:</p>
+      <p><strong>ID транзакції:</strong> {{ payment_id }}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Товар</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in purchased_commodities %}
+          <tr>
+            <td>{{ item.commodity.title }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.commodity.price|multiply:item.quantity|intcomma }}₴</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="2">Разом:</td>
+            <td>{{ total_amount|intcomma }}₴</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Дякуємо за покупку!</p>
+      <p>З найкращими побажаннями,<br />InterTech</p>
+    </div>
+  </body>
+</html>

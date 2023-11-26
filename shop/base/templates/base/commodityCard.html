@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/commodityCard.css' %}" />
@@ -25,7 +26,7 @@
     href="{% url 'base:commodity' commodity.category.id commodity.id %}"
     class="commodity-card--title"
   >
-    {{ commodity.title }}
+    {{ commodity.title|capfirst }}
   </a>
-  <p class="commodity-card--price">Ціна: {{ commodity.price }}₴</p>
+  <p class="commodity-card--price">Ціна: {{ commodity.price|intcomma }}₴</p>
 </div>

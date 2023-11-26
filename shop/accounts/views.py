@@ -80,16 +80,17 @@ def change_profile(request):
     }
     form = ProfileChangeForm(data)
 
-  return render(request, "accounts/changeProfile.html", {"form": form})
+  return render(request, "base/formPage.html", {"form": form, "title": "Оновлення даних"})
 
 
 class UpdatePassword(LoginRequiredMixin, PasswordChangeView):
   login_url = "/login/"
   form_class = CustomPasswordChangeForm
   success_url = "/profile/"
-  template_name = "accounts/changeProfile.html"
+  template_name = "base/formPage.html"
+  success_message = "Пароль змінено успішно"
 
-  def form_valid(self, form):
-    response = super().form_valid(form)
-    messages.success(self.request, "Пароль змінено успішно")
-    return response
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["title"] = "Оновлення пароля"
+    return context

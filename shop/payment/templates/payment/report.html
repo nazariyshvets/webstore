@@ -1,0 +1,56 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} InterTech | Звіт про продажі {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'payment/css/report.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="report">
+    <p><i>Кількість продаж</i>: {{ sales_quantity }}</p>
+    <p><i>Сума</i>: {{ sales_sum|intcomma }}₴</p>
+    <p>
+      <i>Найпопулярніший товар</i>: {{ most_popular_commodity.commodity__title }} 
+      ({{ most_popular_commodity.commodity__category__title }}, {{ most_popular_commodity.commodity__manufacturer__name }},
+      {{ most_popular_commodity.total_quantity }})
+    </p>
+    <p>
+      <i>Найпопулярніша категорія</i>: {{ most_popular_category.commodity__category__title }}
+      ({{ most_popular_category.total_quantity }})
+    </p>
+    <p>
+      <i>Найпопулярніший виробник</i>: {{ most_popular_manufacturer.commodity__manufacturer__name }}
+      ({{most_popular_manufacturer.total_quantity }})
+    </p>
+    <p>
+      <i>Найдорожчий проданий товар</i>: {{ most_expensive_commodity.commodity.title }}
+      ({{most_expensive_commodity.commodity.price|intcomma }}₴, {{ most_expensive_commodity.commodity.category.title }},
+      {{ most_expensive_commodity.commodity.manufacturer.name }})
+    </p>
+    <p>
+      <i>Найдешевший проданий товар</i>: {{ cheapest_commodity.commodity.title }}
+      ({{cheapest_commodity.commodity.price|intcomma }}₴, {{ cheapest_commodity.commodity.category.title }},
+      {{ cheapest_commodity.commodity.manufacturer.name }})
+    </p>
+    <table>
+      <caption>
+        Статистика продаж
+      </caption>
+      <tr>
+        <th>Назва категорії</th>
+        <th>Продані товари (шт)</th>
+        <th>Сума (₴)</th>
+      </tr>
+      {% for category in categories %}
+        <tr>
+          <td>{{ category.commodity__category__title }}</td>
+          <td>{{ category.sales_quantity }}</td>
+          <td>{{ category.sales_sum|intcomma }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </main>
+{% endblock %}

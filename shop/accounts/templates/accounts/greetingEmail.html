@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(211, 211, 211);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: rgb(0, 0, 128);
+      }
+
+      h1 {
+        color: rgb(0, 0, 128);
+      }
+
+      p {
+        color: rgb(128, 128, 128);
+      }
+
+      a {
+        color: rgb(100, 149, 237);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        color: rgb(0, 0, 128);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ласкаво просимо до нашого інтернет-магазину!</h1>
+      <p>Шановний {{ user.first_name }} {{ user.last_name }},</p>
+      <p>
+        Дякуємо за реєстрацію в нашому інтернет-магазині. Ми раді вас вітати в
+        нашій спільноті.
+      </p>
+      <p>
+        Досліджуйте наш широкий асортимент високоякісного комп'ютерного
+        обладнання та аксесуарів.
+        <a href="https://webstore-eta.vercel.app/login"
+          >Увійдіть в обліковий запис</a
+        >.
+      </p>
+      <p>Щасливих покупок!</p>
+      <p>З найкращими побажаннями,<br />InterTech</p>
+    </div>
+  </body>
+</html>

@@ -21,7 +21,7 @@
       />
       <div class="commodity--info">
         <h1 class="commodity--title">{{ commodity.title }}</h1>
-        <p class="commodity--price">Ціна: {{ commodity.price }}₴</p>
+        <p class="commodity--price">Ціна: {{ commodity.price|intcomma }}₴</p>
         <p class="commodity--desc">{{ commodity.description }}</p>
       </div>
     </div>

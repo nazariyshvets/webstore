@@ -1,0 +1,71 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} InterTech | Мої платежі {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'payment/css/userPayments.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="user-payments">
+    <h1 class="user-payments--title">Мої платежі</h1>
+  
+    {% if purchased_commodities %}
+      <table class="user-payments--table">
+        <caption>Придбані товари</caption>
+        <thead>
+          <tr>
+            <th>ID Транзакції</th>
+            <th>Дата та час</th>
+            <th>Товари</th>
+            <th>Сума (грн)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for payment in purchased_commodities %}
+            <tr>
+              <td>{{ payment.payment_id }}</td>
+              <td>{{ payment.datetime }}</td>
+              <td>
+                <ul class="user-payments--commodities">
+                  {% for commodity in payment.commodities %}
+                    <li>{{ commodity.title }} ({{ commodity.quantity }})</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>{{ payment.total_price|intcomma }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="user-payments--no-records">Немає платежів за придбані товари</p>
+    {% endif %}
+
+    {% if replenishment_data %}
+      <table class="user-payments--table">
+        <caption>Поповнення балансу</caption>
+        <thead>
+          <tr>
+            <th>ID Транзакції</th>
+            <th>Дата та час</th>
+            <th>Сума (грн)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for payment in replenishment_data %}
+            <tr>
+              <td>{{ payment.payment_id }}</td>
+              <td>{{ payment.datetime }}</td>
+              <td>{{ payment.replenishment_amount|intcomma }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="user-payments--no-records">Немає платежів за поповнення балансу</p>
+    {% endif %}
+  </main>
+{% endblock %}

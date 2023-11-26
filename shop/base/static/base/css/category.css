@@ -13,7 +13,6 @@
   -webkit-text-fill-color: var(--blue);
   color: var(--blue);
   text-align: center;
-  text-transform: capitalize;
 }
 
 .category--filters {
@@ -43,12 +42,23 @@
   row-gap: 10px;
 }
 
+.category--manufacturers {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
 .category--manufacturer-name {
   font-size: 20px;
 }
 
+.category--manufacturer-input {
+  width: 16px;
+  height: 16px;
+}
+
 .category--filter {
-  padding: 4px 0;
+  padding-block: 4px;
   border: none;
   background-color: var(--white);
   font-size: 20px;
@@ -86,6 +96,7 @@
 
   .category--filters {
     position: static;
+    row-gap: 20px;
     width: auto;
     min-height: auto;
     padding: 20px 10px;

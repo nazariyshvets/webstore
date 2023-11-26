@@ -1,5 +1,6 @@
 {% extends "base/main.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block title %} InterTech | Кошик {% endblock %}
 
@@ -33,12 +34,12 @@
             >
               {{ commodity.title }}
             </a>
-            <p class="cart--commodity-price">Ціна: {{ commodity.price }}₴</p>
+            <p class="cart--commodity-price">Ціна: {{ commodity.price|intcomma }}₴</p>
           </div>
         {% endfor %}
       </div>
 
-      <form method="POST" action="{% url 'purchase:pay' %}" class="cart--form">
+      <form method="POST" action="{% url 'payment:purchase' %}" class="cart--form">
         {% csrf_token %}
         <input type="hidden" name="ids" />
         <input type="hidden" name="quantities" />

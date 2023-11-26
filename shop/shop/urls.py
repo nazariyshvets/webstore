@@ -5,10 +5,10 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('base.urls')),
-    path('', include('accounts.urls')),
-    path('', include('purchase.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("base.urls")),
+    path("", include("accounts.urls")),
+    path("", include("payment.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

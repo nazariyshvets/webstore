@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'base/css/catalogSidebar.css' %}" />
@@ -9,7 +10,7 @@
   <ul class="catalog-sidebar--categories">
     {% for category in categories %}
       <li>
-        <a href="{% url 'base:category' category.id %}" class="catalog-sidebar--category">{{ category.title }}</a>
+        <a href="{% url 'base:category' category.id %}" class="catalog-sidebar--category">{{ category.title|capfirst }}</a>
       </li>
     {% endfor %}
   </ul>

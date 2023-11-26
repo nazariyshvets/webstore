@@ -10,7 +10,7 @@
 
 {% block content %}
   <main class="category">
-    <h1 class="category--title">{{ category.title }}</h1>
+    <h1 class="category--title">{{ category.title|capfirst }}</h1>
 
     {% include "base/searchForm.html" %}
 
@@ -19,15 +19,17 @@
       <form class="category--filter-form">
         <div class="category--manufacturers">
           {% for manufacturer_name in all_manufacturers %}
-            <input
-              type="checkbox"
-              class="category--manufacturer-input"
-              value="{{ manufacturer_name }}"
-            />
-            <label class="category--manufacturer-name">{{ manufacturer_name }}</label><br />
+            <label class="category--manufacturer-name">
+              <input
+                type="checkbox"
+                class="category--manufacturer-input"
+                value="{{ manufacturer_name }}"
+              />
+              {{ manufacturer_name }}
+            </label>
           {% endfor %}
         </div>
-        <input class="category--filter" type="submit" value="Підтвердити" />
+        <input type="submit" class="category--filter" value="Підтвердити" />
       </form>
     </div>
 

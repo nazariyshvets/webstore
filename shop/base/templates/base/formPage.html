@@ -1,0 +1,27 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+{% block title %} InterTech | {{ title }} {% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'base/css/formPage.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main class="form-page">
+    <form method="POST" class="form-page--form">
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+      {% endfor %}
+      <input type="submit" value="Підтвердити" class="form-page--submit" />
+    </form>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'base/js/form.js' %}"></script>
+  <script src="{% static 'base/js/formPage.js' %}"></script>
+{% endblock %}
